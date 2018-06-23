@@ -4,9 +4,9 @@ post_title: numpy ndarray类型中view/copy
 author: chin340823
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2018/06/23/numpy-ndarray%e7%b1%bb%e5%9e%8b%e4%b8%adviewcopy/'
+permalink: 'http://www.tvect.cc/2016/08/09/numpy-ndarray%e7%b1%bb%e5%9e%8b%e4%b8%adviewcopy/'
 published: true
-post_date: 2018-06-23 12:43:01
+post_date: 2016-08-09 12:43:01
 ---
 在numpy的reshape和ravel函数说明中指出在必要时会返回对象的拷贝。
 numpy.reshape()中指出：
