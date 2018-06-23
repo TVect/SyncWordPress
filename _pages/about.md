@@ -17,7 +17,7 @@ post_date: 2017-11-22 22:37:40
 <ul>
 <li>github
 <a href="https://github.com/TVect" title="https://github.com/TVect">https://github.com/TVect</a></p></li>
-<li><p>码云
+<li>码云
 <a href="https://gitee.com/TVect" title="https://gitee.com/TVect">https://gitee.com/TVect</a></p></li>
 </ul>
 
