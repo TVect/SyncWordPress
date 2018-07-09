@@ -1,7 +1,7 @@
 ---
 ID: 299
 post_title: Sentence Representation 总结
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: 'http://www.tvect.cc/2018/06/01/sentence-representation-%e6%80%bb%e7%bb%93/'

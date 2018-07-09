@@ -1,7 +1,7 @@
 ---
 ID: 1
 post_title: 世界，您好！
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: >

@@ -3,7 +3,7 @@ ID: 281
 post_title: >
   RecursiveNN for Constituency Parsing
   总结
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: 'http://www.tvect.cc/2018/05/24/recursivenn-for-constituency-parsing-%e6%80%bb%e7%bb%93/'

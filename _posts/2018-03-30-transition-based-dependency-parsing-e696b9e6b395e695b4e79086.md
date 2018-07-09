@@ -3,7 +3,7 @@ ID: 122
 post_title: >
   Transition Based Dependency Parsing
   方法整理
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: 'http://www.tvect.cc/2018/03/30/transition-based-dependency-parsing-%e6%96%b9%e6%b3%95%e6%95%b4%e7%90%86/'

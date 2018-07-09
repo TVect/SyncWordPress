@@ -1,7 +1,7 @@
 ---
 ID: 341
 post_title: End-To-End Memory Networks notes
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: >

@@ -1,7 +1,7 @@
 ---
 ID: 387
 post_title: numpy ndarray类型中view/copy
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: 'http://www.tvect.cc/2016/08/09/numpy-ndarray%e7%b1%bb%e5%9e%8b%e4%b8%adviewcopy/'

@@ -1,7 +1,7 @@
 ---
 ID: 228
 post_title: Attention is all you need 笔记
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: >

@@ -1,7 +1,7 @@
 ---
 ID: 2
 post_title: 关于
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: page
 permalink: http://www.tvect.cc/about/
@@ -23,4 +23,4 @@ post_date: 2017-11-22 22:37:40
 
 <h2>我的邮箱</h2>
 
-<p>chin340823@163.com
+chin340823@163.com

@@ -1,7 +1,7 @@
 ---
 ID: 165
 post_title: Pointer Network
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: 'http://www.tvect.cc/2018/04/13/rnn%e6%89%a9%e5%b1%95-pointer-network/'

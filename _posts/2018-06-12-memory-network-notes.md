@@ -1,7 +1,7 @@
 ---
 ID: 322
 post_title: Memory Network notes
-author: chin340823
+author: Chin
 post_excerpt: ""
 layout: post
 permalink: >
