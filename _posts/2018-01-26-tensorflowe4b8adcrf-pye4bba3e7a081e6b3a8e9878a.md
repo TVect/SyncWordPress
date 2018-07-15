@@ -4,7 +4,7 @@ post_title: tensorflow中crf.py代码注释
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2018/01/26/tensorflow%e4%b8%adcrf-py%e4%bb%a3%e7%a0%81%e6%b3%a8%e9%87%8a/'
+permalink: 'http://blog.tvect.cc/2018/01/26/tensorflow%e4%b8%adcrf-py%e4%bb%a3%e7%a0%81%e6%b3%a8%e9%87%8a/'
 published: true
 post_date: 2018-01-26 15:53:23
 ---

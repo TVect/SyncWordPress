@@ -5,7 +5,7 @@ author: Chin
 post_excerpt: ""
 layout: post
 permalink: >
-  http://www.tvect.cc/2018/06/12/end-to-end-memory-networks-notes/
+  http://blog.tvect.cc/2018/06/12/end-to-end-memory-networks-notes/
 published: true
 post_date: 2018-06-12 17:24:21
 ---

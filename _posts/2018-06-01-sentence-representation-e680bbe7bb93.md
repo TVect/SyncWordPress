@@ -4,7 +4,7 @@ post_title: Sentence Representation 总结
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2018/06/01/sentence-representation-%e6%80%bb%e7%bb%93/'
+permalink: 'http://blog.tvect.cc/2018/06/01/sentence-representation-%e6%80%bb%e7%bb%93/'
 published: true
 post_date: 2018-06-01 11:49:21
 ---

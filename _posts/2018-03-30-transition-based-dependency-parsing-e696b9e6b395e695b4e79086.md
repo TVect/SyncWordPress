@@ -6,7 +6,7 @@ post_title: >
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2018/03/30/transition-based-dependency-parsing-%e6%96%b9%e6%b3%95%e6%95%b4%e7%90%86/'
+permalink: 'http://blog.tvect.cc/2018/03/30/transition-based-dependency-parsing-%e6%96%b9%e6%b3%95%e6%95%b4%e7%90%86/'
 published: true
 post_date: 2018-03-30 13:50:12
 ---

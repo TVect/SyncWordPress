@@ -4,7 +4,7 @@ post_title: 关于
 author: Chin
 post_excerpt: ""
 layout: page
-permalink: http://www.tvect.cc/about/
+permalink: http://blog.tvect.cc/about/
 published: true
 post_date: 2017-11-22 22:37:40
 ---

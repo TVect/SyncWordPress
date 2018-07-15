@@ -5,7 +5,7 @@ author: Chin
 post_excerpt: ""
 layout: post
 permalink: >
-  http://www.tvect.cc/2018/06/12/memory-network-notes/
+  http://blog.tvect.cc/2018/06/12/memory-network-notes/
 published: true
 post_date: 2018-06-12 17:24:11
 ---

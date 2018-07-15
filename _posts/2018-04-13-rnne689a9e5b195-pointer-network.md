@@ -4,7 +4,7 @@ post_title: Pointer Network
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2018/04/13/rnn%e6%89%a9%e5%b1%95-pointer-network/'
+permalink: 'http://blog.tvect.cc/2018/04/13/rnn%e6%89%a9%e5%b1%95-pointer-network/'
 published: true
 post_date: 2018-04-13 14:22:58
 ---

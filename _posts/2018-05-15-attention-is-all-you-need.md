@@ -5,7 +5,7 @@ author: Chin
 post_excerpt: ""
 layout: post
 permalink: >
-  http://www.tvect.cc/2018/05/15/attention-is-all-you-need/
+  http://blog.tvect.cc/2018/05/15/attention-is-all-you-need/
 published: true
 post_date: 2018-05-15 18:46:55
 ---

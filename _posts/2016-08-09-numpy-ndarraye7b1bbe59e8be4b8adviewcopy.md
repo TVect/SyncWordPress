@@ -4,7 +4,7 @@ post_title: numpy ndarray类型中view/copy
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2016/08/09/numpy-ndarray%e7%b1%bb%e5%9e%8b%e4%b8%adviewcopy/'
+permalink: 'http://blog.tvect.cc/2016/08/09/numpy-ndarray%e7%b1%bb%e5%9e%8b%e4%b8%adviewcopy/'
 published: true
 post_date: 2016-08-09 12:43:01
 ---

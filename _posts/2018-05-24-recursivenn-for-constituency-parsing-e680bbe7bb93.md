@@ -6,7 +6,7 @@ post_title: >
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2018/05/24/recursivenn-for-constituency-parsing-%e6%80%bb%e7%bb%93/'
+permalink: 'http://blog.tvect.cc/2018/05/24/recursivenn-for-constituency-parsing-%e6%80%bb%e7%bb%93/'
 published: true
 post_date: 2018-05-24 17:07:45
 ---

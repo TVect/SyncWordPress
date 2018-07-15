@@ -6,7 +6,7 @@ post_title: >
 author: Chin
 post_excerpt: ""
 layout: post
-permalink: 'http://www.tvect.cc/2017/12/04/reasoning-about-entailment-with-neural-attention-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
+permalink: 'http://blog.tvect.cc/2017/12/04/reasoning-about-entailment-with-neural-attention-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
 published: true
 post_date: 2017-12-04 22:23:59
 ---

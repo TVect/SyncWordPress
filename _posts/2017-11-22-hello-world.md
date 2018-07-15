@@ -5,7 +5,7 @@ author: Chin
 post_excerpt: ""
 layout: post
 permalink: >
-  http://www.tvect.cc/2017/11/22/hello-world/
+  http://blog.tvect.cc/2017/11/22/hello-world/
 published: true
 post_date: 2017-11-22 22:37:40
 ---
