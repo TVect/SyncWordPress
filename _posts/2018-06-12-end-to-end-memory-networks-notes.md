@@ -49,7 +49,7 @@ post_date: 2018-06-12 17:24:21
 
 利用前面得到的 output vector o 和 input embedding u, 得到最终的预测：$$\\hat {a} = Softmax(W(o + u))$$, 其中 $$W \\in R^{V*d}$$
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/end2end-memnet-1024x509.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/end2end-memnet-1024x509.png" alt="" />
 
 <h2>Multiple Layers</h2>
 
