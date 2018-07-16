@@ -32,7 +32,7 @@ memory network 由 memory m (an array of objects indexed by $$m_{i}$$) 和 四�
 </ul>
 
 <p>模型结构图如下：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/memory-network-1024x494.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/memory-network-1024x494.png" alt="" />
 
 <h2>A MemNN implementation for text</h2>
 
@@ -60,7 +60,7 @@ $$
 <h3>损失函数</h3>
 
 最终的损失函数选为：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/memnet-loss-1024x226.jpg" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/memnet-loss-1024x226.jpg" alt="" />
 
 <pre class="line-numbers prism-highlight" data-start="1"><code class="language-null">(6) 有没有挑选出正确的第一句话
 (7) 正确挑选出了第一句话后能不能正确挑出第二句话
