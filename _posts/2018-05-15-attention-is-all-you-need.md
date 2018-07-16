@@ -26,7 +26,7 @@ Transformer 同样也采用了 encoder-decoder 的架构，在 encoder 和 decod
 
 模型结构的图示如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/transformer-structure.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/transformer-structure.png" alt="" />
 
 <h2>Encoder and Decoder Stacks</h2>
 
@@ -37,7 +37,7 @@ Transformer 同样也采用了 encoder-decoder 的架构，在 encoder 和 decod
 
 <h2>Attention</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/transformer-attention.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/transformer-attention.png" alt="" />
 
 <h3>Scaled Dot-Product Attention</h3>
 
