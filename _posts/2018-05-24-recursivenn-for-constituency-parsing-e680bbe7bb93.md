@@ -20,13 +20,13 @@ post_date: 2018-05-24 17:07:45
 
 最基本的递归神经网络结构如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/rvnn-1024x354.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/rvnn-1024x354.png" alt="" />
 
 上述模型结构图中表示的任务, 是使用 node 的向量表示来预测 node 表示的短语的情感极性。
 
 具体到 Structure Prediction 的任务中, 图示如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/rvnn_constituent.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/rvnn_constituent.png" alt="" />
 
 在 Recursive Neural Networks for Structure Prediction 的任务中, 可以通过 RNN 得到 2 个 node 合并之后的向量表示, 同时可以基于得到的向量表示计算一个得分, 表示多大程度上两个子节点应该合并为一个父节点。根据每个 node 的得分将得分最高的 node 进行合并。继续整个流程, 基于当前已合并的节点, 计算节点合并的得分...直到合并到 root 节点。
 
@@ -36,7 +36,7 @@ post_date: 2018-05-24 17:07:45
 
 ** Model: Compositional Vector Grammars(CVGs) = syntactically untied RNN (SU-RNN) + PCFG **
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/cvgs-1024x773.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/cvgs-1024x773.png" alt="" />
 
 <h4>SU-RNN</h4>
 
@@ -66,7 +66,7 @@ post_date: 2018-05-24 17:07:45
 
 模型结构图如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/mvrnn-1024x196.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/mvrnn-1024x196.png" alt="" />
 
 <h2>Recursive Neural Tensor Network</h2>
 
@@ -76,7 +76,7 @@ RNTN 使用了固定参数数目的单个的 powerful 的组合函数 (通过使
 
 模型结构图如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/rntn-1024x442.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/rntn-1024x442.png" alt="" />
 
 其中，使用了很多个的双线性变换，这些双线性变换可以帮助直接建立input words之间的联系。
 
@@ -88,7 +88,7 @@ RNTN 使用了固定参数数目的单个的 powerful 的组合函数 (通过使
 
 Child-Sum Tree-LSTMs 的计算公式如下。注意到, 在 tree 的结构为简单的 chain 的时候, 下面的计算公式退化为标准的 LSTM 计算公式。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/dependency-tree-lstm.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/dependency-tree-lstm.png" alt="" />
 
 <h4>Dependency Tree-LSTMs</h4>
 
@@ -107,7 +107,7 @@ Child-Sum Tree-LSTMs 的计算公式如下。注意到, 在 tree 的结构为简
 
 N-ary Tree-LSTMs 的计算公式如下。注意到, 在 tree 的结构为简单的 chain 的时候, 下面的计算公式退化为标准的 LSTM 计算公式。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/05/nary-tree-lstm-1024x768.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/05/nary-tree-lstm-1024x768.png" alt="" />
 
 <h4>Constituency Tree-LSTMs</h4>
 
