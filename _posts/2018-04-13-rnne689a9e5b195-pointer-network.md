@@ -24,7 +24,7 @@ post_date: 2018-04-13 14:22:58
 
 <h1>模型</h1>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/ptrnet-01.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/ptrnet-01.png" alt="" />
 
 <h2>Attention vs. Pointer Network</h2>
 
@@ -32,7 +32,7 @@ post_date: 2018-04-13 14:22:58
 
 传统的 attention based seq2seq的基本公式如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/attention-01.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/attention-01.png" alt="" />
 
 <h3>Ptr-Net</h3>
 
@@ -40,18 +40,18 @@ post_date: 2018-04-13 14:22:58
 
 具体公式如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/ptrnet-02.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/ptrnet-02.png" alt="" />
 
 <h1>Examples</h1>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/examples.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/examples.png" alt="" />
 
 <ul>
 <li><strong>convex hulls</strong>
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/convex-hulls-01.png" alt="" /></p></li>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/convex-hulls-01.png" alt="" /></p></li>
 <li><p><strong>Delaunay triangulations</strong></p></li>
 <li><p><strong>Travelling Salesman Problem (TSP)</strong>
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/tsp-01.png" alt="" /></p></li>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/tsp-01.png" alt="" /></p></li>
 </ul>
 
 <h1>Pointer Network in NLP</h1>
@@ -60,7 +60,7 @@ post_date: 2018-04-13 14:22:58
 
 <p>同时结合了传统的attention based seq2seq 和 pointer network，进行加权之后生成最后的summary。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/04/ptr-summary.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/04/ptr-summary.png" alt="" />
 
 <h1>参考资料</h1>
 
