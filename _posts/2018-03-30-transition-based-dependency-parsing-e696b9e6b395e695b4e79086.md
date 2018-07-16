@@ -85,7 +85,7 @@ Pop the stack.</li>
 
 <h4>基本的Greedy的算法框架</h4>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/dependency-01.png" alt="dependency" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/dependency-01.png" alt="dependency" />
 
 <h4>带Beam Search的算法框架</h4>
 
@@ -93,7 +93,7 @@ Pop the stack.</li>
 这样的评分函数或者概率分布函数有各种不同的定义方法。
 比如可以用action list中每一步的得分求和来作为整个action list的得分。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/dependency-02.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/dependency-02.png" alt="" />
 
 <h4>ORACLE的学习</h4>
 
@@ -110,10 +110,10 @@ Pop the stack.</li>
 <h3>样例</h3>
 
 使用arc standard transition system
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/arc-standard.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/arc-standard.png" alt="" />
 
 使用arc eager transition system
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/arc-eager.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/arc-eager.png" alt="" />
 
 <h3>Transition Based方法的优缺点</h3>
 
@@ -132,7 +132,7 @@ Pop the stack.</li>
 <h3>样例</h3>
 
 下面是一个使用Chu-Liu Edmonds algorithm寻找最大生成树(parse tree) 的例子。
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/graph-method.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/graph-method.png" alt="" />
 
 <h3>特征和训练</h3>
 
@@ -150,7 +150,7 @@ Pop the stack.</li>
 </blockquote>
 
 <strong>模型训练</strong>：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/graph-model.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/graph-model.png" alt="" />
 
 使用inference-based learning combined with the perceptron learning rule. 
 我们先用初始的权重parse a sentence，如果parse tree不正确，会做权重更新。
@@ -180,19 +180,19 @@ Pop the stack.</li>
 
 <h3>基本模型</h3>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/base-framework.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/base-framework.png" alt="" />
 
 <hr />
 
 <h3>BeamSearch</h3>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/beamsearch-framework.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/beamsearch-framework.png" alt="" />
 
 <hr />
 
 <h3>Generalized Perceptron Algorithm</h3>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/generalized-perceptron.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/generalized-perceptron.png" alt="" />
 
 <hr />
 
@@ -216,7 +216,7 @@ Pop the stack.</li>
 
 <h2>模型结构</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/danqichen.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/danqichen.png" alt="" />
 
 <h3>特点</h3>
 
@@ -237,7 +237,7 @@ cross-entropy loss plus a l2-regularization term</li>
 
 <h2>基本结构</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/weiss.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/weiss.png" alt="" />
 
 <h3>特点</h3>
 
@@ -253,7 +253,7 @@ cross-entropy loss plus a l2-regularization term</li>
 结合了Collins本人在之前做dependency parsing用到的perceptron algorithm和early update的方法。
 
 待优化的目标函数如下：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/weiss-loss.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/weiss-loss.png" alt="" />
 
 上面使用了预训练过程得到的向量来作为特征向量，参与到感知机算法的训练中。
 
@@ -275,7 +275,7 @@ tri-training: 使用两个不同的parser来处理未标注的语料，会把两
 
 <strong>直接使用neural network的输出来取代general framework中的线性评分函数。</strong>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/zhou-try01.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/zhou-try01.png" alt="" />
 效果不好，可能是因为序列中每一步的action是概率相关的，使用每一步action的概率相乘去近似整个序列的概率可能不太准确。
 
 <h2>尝试2</h2>
@@ -283,19 +283,19 @@ tri-training: 使用两个不同的parser来处理未标注的语料，会把两
 <strong>直接建模整个action sequences的概率分布</strong>
 
 定义整个action sequences的概率分布如下：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/zhou-try02-1.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/zhou-try02-1.png" alt="" />
 
 训练的目标函数如下：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/zhou-try02-2.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/zhou-try02-2.png" alt="" />
 
 使用上面的目标函数，在计算梯度的时候，会涉及到大量的可能的action序列。
 我们使用contrastive learning来近似计算上面的Z
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/zhou-try02-3.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/zhou-try02-3.png" alt="" />
 
 在新的目标函数中，我们只考虑惩罚那些位于Beam中的负样本，也即概率相对高的负样本。
 至此，整个算法流程如下：
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/zhou-try02-4.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/zhou-try02-4.png" alt="" />
 
 <h2>Conclusion</h2>
 
@@ -313,7 +313,7 @@ maximizes the likelihood of action sequences instead of individual actions
 
 <h2>Transition System</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/google-01.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/google-01.png" alt="" />
 
 <hr />
 
@@ -321,19 +321,19 @@ maximizes the likelihood of action sequences instead of individual actions
 
 <h3>Local Normalization</h3>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/google-02.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/google-02.png" alt="" />
 
 <hr />
 
 <h3>Global Normalization</h3>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/google-03.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/google-03.png" alt="" />
 
 <hr />
 
 <h2>Training</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/google-04.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/google-04.png" alt="" />
 
 对于Local Normalization而言，归一化项的求和数目比较少，求梯度等计算比较容易。
 
@@ -341,7 +341,7 @@ maximizes the likelihood of action sequences instead of individual actions
 
 <h2>结果对比</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/03/result.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/03/result.png" alt="" />
 
 <h1>其他</h1>
 
