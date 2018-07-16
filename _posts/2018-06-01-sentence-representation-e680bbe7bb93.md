@@ -29,7 +29,7 @@ post_date: 2018-06-01 11:49:21
 注意到, 为了 model the differences in meaning between inputs and responses, 在 response 一侧得到的表示在和 input 的表示做内积之前，经过了附加的一个 FF network。
 当然，在input encoder 这一侧也可以加一个 FF network, 但文章中提到, 早期的试验表明只在一个encoder 之后加上FF network, 就已经足够。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/InputResponseEncoderModel-00-1024x718.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/InputResponseEncoderModel-00-1024x718.png" alt="" />
 
 在具体的做sentence embedding部分，即图中的encoder部分, 文章中尝试了如下两种结构。
 
@@ -60,7 +60,7 @@ Transformer 结构来源于 google 2017 年的 《Attention is all you need.》
 
 文章 《Universal Sentence Encoder》中也提到了Transformer做平均的方法，具体是求和之后除以句子长度的平方根，类似于 DAN 的做法。
 
-Transformer细节可以参考 <a href="http://www.tvect.cc/2018/05/15/attention-is-all-you-need/">Attention is all you need 笔记</a>
+Transformer细节可以参考 <a href="http://blog.tvect.cc/2018/05/15/attention-is-all-you-need/">Attention is all you need 笔记</a>
 
 <h3>两种 Encoder 结构的对比</h3>
 
@@ -79,13 +79,13 @@ Transformer细节可以参考 <a href="http://www.tvect.cc/2018/05/15/attention-
 考虑了 conversational input-response prediction 和 natural language inference (NLI), 共享这两个任务的 encoder。
 
 图示如下：
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/SentRep-multitask-01-1.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/SentRep-multitask-01-1.png" alt="" />
 
 <h1>一些实验结果</h1>
 
 <h2>Response Prediction 实验 和 SNLI 实验</h2>
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/expriment-01-1024x273.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/expriment-01-1024x273.png" alt="" />
 
 左图是只做 Response Prediction 任务的结果, 可以看到, 对于不同的 N, transformer encoder 表现的都比 DAN 要好。
 之后展示的试验结果都是 transformer encoder 的结果, 因为其效果更好。
@@ -109,7 +109,7 @@ Semantic Textual Similarity (STS) benchmark 包含了三个类别(captions,news 
 1. 取 multitask model 得到的 sentence representation 直接做内积评分, 算相似度。
 2. 使用一个附加的 transformation matrix 对得到的 sentence representation 做变换之后, 再做内积评分, 算相似度。这个 transformation matrix 使用了 STS 的数据进行训练。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/expriment-03-1024x780.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/expriment-03-1024x780.png" alt="" />
 
 上图的 Table 3 是以上两种实验方案和一些 baselines 的结果对比, Table 4 是考虑上述方案在 STS 数据三个类别的效果。Figure 8 展示的是不同数量的 SNLI 数据，对 STS 评测效果的影响。
 
@@ -124,7 +124,7 @@ Semantic Textual Similarity (STS) benchmark 包含了三个类别(captions,news 
 
 和 STS experiments 一样，这里也使用了 cosine 相似度。这里并没有做任何 tuning, 得到的结果已经很好了。
 
-<img src="http://www.tvect.cc/wp-content/uploads/2018/06/expriment-04-300x172.png" alt="" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/06/expriment-04-300x172.png" alt="" />
 
 <h2>其他</h2>
 
