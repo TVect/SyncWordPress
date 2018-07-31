@@ -81,11 +81,19 @@ $$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the 
 
 <h2>Pre-trained biLM architecture</h2>
 
+在这篇文章中实际使用的 biLM 结构中，先对每个 word 中的 character 做 convolution 得到 word 的表示，具体的使用的 conv 共有 32+ 32+ 64+ 128 + ...+ 1024 = 2048 filters， 后面接两个highway layer，再做线性投射到 512 dim，后面接 2 层 lstm. 最后为每个 word 提供了 3 层的表示 (传统的 word embedding 的方式只提供了 1 层的表示).
+
+具体的模型细节可以参看参考资料中代码实现.
+
+在 biLM 预训练完毕之后，就可以为特定的任务计算向量表示了。文章中提到在有些 case 当中，用domain specific 的数据对 biLM 做 fine tuning 会带来 perplexity 的显著下降和下游任务性能的提升。
+
 <hr />
 
 <h1>参考资料</h1>
 
 <ul>
-<li><a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations
-</a></li>
+<li><p><a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations
+</a></p></li>
+<li><p><a href="https://github.com/allenai/bilm-tf">代码实现 tensorflow 版</a></p></li>
+<li><p><a href="https://github.com/allenai/allennlp">allennlp实现</a></p></li>
 </ul>
