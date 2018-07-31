@@ -35,3 +35,12 @@ post_date: 2018-07-31 22:28:14
 <h2>Using biLMs for supervised NLP tasks</h2>
 
 <h2>Pre-trained biLM architecture</h2>
+
+<hr />
+
+<h1>参考资料</h1>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1802.05365">Deep contextualized word representations
+</a></li>
+</ul>
