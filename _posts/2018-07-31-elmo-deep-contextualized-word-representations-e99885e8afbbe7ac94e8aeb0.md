@@ -30,7 +30,34 @@ post_date: 2018-07-31 22:28:14
 
 <h2>Bidirectional language models</h2>
 
+给定 N 个 tokens 的序列 $$(t_{1}, ..., t_{n})$$, biLM 是要极大化log likelihood:
+
+$$
+\\sum \\limits_{k=1}^{N}(log \\, p(t_{k} | t_{1}, ..., t_{k-1}; \\theta_{x}, \\theta^{\\rightarrow}_{lstm}, \\theta_{s}) + log \\, p(t_{k} | t_{k+1}, ..., t_{N}; \\theta_{x}, \\theta^{\\leftarrow}_{lstm}, \\theta_{s}))
+$$
+
+其中, 在forward 和 backword 的 language model 中共享 token representation ($$\\theta_{x}$$), 和 Softmax layer ($$\\theta_{s}$$), 同时保持各自独立的 lstm 参数 ($$\\theta^{\\rightarrow}_{lstm}, \\theta^{\\leftarrow}_{lstm}$$)
+
 <h2>ELMo</h2>
+
+ELMo 是一个 biLM 中间层表示的任务特定的组合。
+
+对于每个 token，L 层的 biLM 会得到 2L+1 个向量表示
+
+$$
+R_{k} = \\{x_{k}, h^{\\rightarrow}_{k, j}, h^{\\leftarrow}_{k, j} | j=1, 2, ..., L\\}=\\{h_{k, j} | j=0, 1, ..., L\\}
+$$
+
+对于不同的任务，ELMo 表示为
+
+$$
+ELMo_{k}^{task} = E(R_{k}; \\theta^{task}) = \\gamma^{task} \\sum \\limits_{j=0}^{L} s_{j}^{task} h_{k, j}
+$$
+
+其中，$$s^{task}$$ 为 softmax-normalized weights. 
+$$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the entire ELMo vector, 其在实际中能帮助训练.
+
+另外，考虑到 biLM 每一层的激活有着不同的分布，有时候在做加权之前做layer normalization 也会有用.
 
 <h2>Using biLMs for supervised NLP tasks</h2>
 
