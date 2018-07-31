@@ -61,6 +61,24 @@ $$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the 
 
 <h2>Using biLMs for supervised NLP tasks</h2>
 
+假设现在已有一个 pre-trained 的 biLM，和一个任务特定的监督模型，可以很方便的利用 biLM 来提升监督模型的性能。
+
+比如，现在的监督任务模型使用通常的 word embedding $$x_{emb}$$ 作为输入，经过几层 RNN，每个词得到一个相应的输出 $$h_{rnn}$$。
+为了利用pre-trained biLM，将 biLM 的参数固定住，为每个词计算相应的 $$ELMo^{task}$$ (参数 $$s^{task}$$ 和 $$\\gamma^{task}$$ 可以和监督任务模型进行联合训练得到).
+可以有几种方式使用 $$ELMo^{task}$$:
+
+<ul>
+<li>将 EMLo 加在 RNN 的输入层，即为 $$[x_{emb}, ELMo^{task}]$$</li>
+<li>将 EMLo 加在 RNN 的输出层，即为 $$[x_{emb}, ELMo^{task}]$$</li>
+<li>将 ELMo 同时加在 RNN 的输入层和输出层.</li>
+</ul>
+
+最后，在使用 ELMo 的过程中，加上一些 dropout 或者 regularize，可能会更好. (<strong>加在 $$s^{task},\\gamma^{task}$$ 上??? 毕竟biLM 参数不是固定了吗???</strong>)
+
+<blockquote>
+  Finally, we found it beneficial to add a moderate amount of dropout to ELMo and in some cases to regularize the ELMo weights by adding w^2 to the loss. This imposes an inductive bias on the ELMo weights to stay close to an average of all biLM layers.
+</blockquote>
+
 <h2>Pre-trained biLM architecture</h2>
 
 <hr />
