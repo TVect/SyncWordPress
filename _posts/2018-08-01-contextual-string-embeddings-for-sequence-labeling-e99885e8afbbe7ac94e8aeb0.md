@@ -37,6 +37,8 @@ capture word semantics in context to address the polysemous and context-dependen
 
 <h1>模型结构</h1>
 
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/seqlabel_model.png" alt="" />
+
 <h2>Recurrent Network States</h2>
 
 普通的基于 LSTM 的 character 级别的 language model，包括了一个前向的和一个后向的 language model.
@@ -44,11 +46,32 @@ capture word semantics in context to address the polysemous and context-dependen
 记 forward language model 中得到的hidden state 和 cell state 为 $$h_{t}^{f}, c_{t}^{f}$$.
 记 backward language model 中得到的hidden state 和 cell state 为 $$h_{t}^{b}, c_{t}^{b}$$.
 
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/char-lm.png" alt="" />
+
 <h2>Extracting Word Representations</h2>
+
+word representations 由以下两部分 concat 构成：
+
+<ol>
+<li>forward language model 当中，这个 word 的最后一个 char 后面一个字符的 hidden state.</p></li>
+<li><p>backward language model 当中，这个 word 的第一 char 的前面一个字符的 hidden state.</p></li>
+</ol>
+
+<p>正式的来说，假定每个 word 起始字符的下标为 $$t_{0}, ..., t_{n}$$, 那么 word 的 contextual string embedding 为：
+
+$$
+w_{i}^{CharLM} := [h^{f}_{t_{i+1}-1}, h^{b}_{t_{i}-1}]
+$$
+
+<strong>通过这种方式得到的向量表示，刻画了 word 的语义语法特性和上下文特性。</strong>
 
 <h2>Sequence Labeling Architecture</h2>
 
+<hr />
+
 <h1>实验和结论</h1>
+
+<hr />
 
 <h1>参考资料</h1>
 
