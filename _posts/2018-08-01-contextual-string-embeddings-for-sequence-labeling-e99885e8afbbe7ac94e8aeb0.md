@@ -67,9 +67,18 @@ $$
 
 <h2>Sequence Labeling Architecture</h2>
 
+使用 $$w^{CharLM}$$ 或者是和其他 word embedding 做拼接，作为输入，后面接 BiLSTM+CRF
+
 <hr />
 
 <h1>实验和结论</h1>
+
+<ul>
+<li><p>pre-trained contextual character-level features are particularly helpful for NER task
+since entities are an open vocabulary of names that are often indicated by character features (such as capitalization or endings).</p></li>
+<li><p>Traditional word embeddings helpful
+classic word embeddings capture word-level semantics that complement the strong character-level features of our proposed embeddings</p></li>
+</ul>
 
 <hr />
 
