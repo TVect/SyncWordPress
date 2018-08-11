@@ -99,6 +99,8 @@ $$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the 
 <li><p>在下游任务中使用 ELMo，有助于在 training size 比较小的训练集获得比较好的 performance. 另外，也可以减少达到 state-of-the-art performance 所需要的参数更新次数。</p></li>
 </ul>
 
+<hr />
+
 <h1>实践案例</h1>
 
 <p>我们之前有做用 IDCNN + CRF 做中文病例的 NER，最终的 f1 值约为 82.18%.
