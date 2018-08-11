@@ -94,10 +94,20 @@ $$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the 
 <h1>实验结果分析</h1>
 
 <ul>
-<li><p>相比于之前直接使用 top layer 的表示，使用 deep contextual representation (即使用不同 layer 表示的组合) 更能提升下游任务的性能。</p></li>
+<li>相比于之前直接使用 top layer 的表示，使用 deep contextual representation (即使用不同 layer 表示的组合) 更能提升下游任务的性能。</p></li>
 <li><p>语法信息在 lower layer 有更好的表示，而语义信息更多的是在 top layer 被捕获。</p></li>
 <li><p>在下游任务中使用 ELMo，有助于在 training size 比较小的训练集获得比较好的 performance. 另外，也可以减少达到 state-of-the-art performance 所需要的参数更新次数。</p></li>
 </ul>
+
+<h1>实践案例</h1>
+
+<p>我们之前有做用 IDCNN + CRF 做中文病例的 NER，最终的 f1 值约为 82.18%.
+
+之后我们有尝试在上述模型当中结合 ELMo.
+
+我们在使用的过程当中，都是基于字来做的. 在预训练 biLM 和之后的 ELMo 使用中，都去掉了由 char 卷积得到 word 的部分，简单的以 word embedding 作为输入，训练 biLM。biLM 中的参数也并没有再做调整.
+
+添加 ELMo 之后，f1 值可以很轻松的达到 83.5+%. 再对 IDCNN+CRF 进行相应的调整之后，f1 值可以达到 84.19%.
 
 <hr />
 
