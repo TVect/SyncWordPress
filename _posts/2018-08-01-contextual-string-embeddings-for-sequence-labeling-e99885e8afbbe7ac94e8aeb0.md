@@ -12,6 +12,8 @@ post_date: 2018-08-01 08:02:42
 ---
 [toc]
 
+<!--more-->
+
 <h1>概述</h1>
 
 当前的 word embedding 方法大概分为三类：
@@ -60,7 +62,7 @@ word representations 由以下两部分 concat 构成：
 <p>正式的来说，假定每个 word 起始字符的下标为 $$t_{0}, ..., t_{n}$$, 那么 word 的 contextual string embedding 为：
 
 $$
-w_{i}^{CharLM} := [h^{f}_{t_{i+1}-1}, h^{b}_{t_{i}-1}]
+w_{i}^{CharLM} := [h^{f}<em>{t</em>{i+1}-1}, h^{b}<em>{t</em>{i}-1}]
 $$
 
 <strong>通过这种方式得到的向量表示，刻画了 word 的语义语法特性和上下文特性。</strong>
