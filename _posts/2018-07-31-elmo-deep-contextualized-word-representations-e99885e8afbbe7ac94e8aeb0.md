@@ -12,6 +12,8 @@ post_date: 2018-07-31 22:28:14
 
 总体上的感觉是，<strong>使用 预训练的语言模型 替代/增强 预训练的词向量</strong>，更好的建模了词的语义语法特性和不同上下文环境中的多义性。
 
+<!--more-->
+
 <h1>概述</h1>
 
 好的词向量模型应该能够
@@ -35,10 +37,10 @@ post_date: 2018-07-31 22:28:14
 给定 N 个 tokens 的序列 $$(t_{1}, ..., t_{n})$$, biLM 是要极大化log likelihood:
 
 $$
-\\sum \\limits_{k=1}^{N}(log \\, p(t_{k} | t_{1}, ..., t_{k-1}; \\theta_{x}, \\theta^{\\rightarrow}_{lstm}, \\theta_{s}) + log \\, p(t_{k} | t_{k+1}, ..., t_{N}; \\theta_{x}, \\theta^{\\leftarrow}_{lstm}, \\theta_{s}))
+&#92;sum &#92;limits_{k=1}^{N}(log &#92;, p(t_{k} | t_{1}, ..., t_{k-1}; &#92;theta_{x}, &#92;theta^{&#92;rightarrow}<em>{lstm}, &#92;theta</em>{s}) + log &#92;, p(t_{k} | t_{k+1}, ..., t_{N}; &#92;theta_{x}, &#92;theta^{&#92;leftarrow}<em>{lstm}, &#92;theta</em>{s}))
 $$
 
-其中, 在forward 和 backword 的 language model 中共享 token representation ($$\\theta_{x}$$), 和 Softmax layer ($$\\theta_{s}$$), 同时保持各自独立的 lstm 参数 ($$\\theta^{\\rightarrow}_{lstm}, \\theta^{\\leftarrow}_{lstm}$$)
+其中, 在forward 和 backword 的 language model 中共享 token representation ($$&#92;theta_{x}$$), 和 Softmax layer ($$&#92;theta_{s}$$), 同时保持各自独立的 lstm 参数 ($$&#92;theta^{&#92;rightarrow}<em>{lstm}, &#92;theta^{&#92;leftarrow}</em>{lstm}$$)
 
 <h2>ELMo</h2>
 
@@ -47,17 +49,17 @@ ELMo 是一个 biLM 中间层表示的任务特定的组合。
 对于每个 token，L 层的 biLM 会得到 2L+1 个向量表示
 
 $$
-R_{k} = \\{x_{k}, h^{\\rightarrow}_{k, j}, h^{\\leftarrow}_{k, j} | j=1, 2, ..., L\\}=\\{h_{k, j} | j=0, 1, ..., L\\}
+R_{k} = &#92;{x_{k}, h^{&#92;rightarrow}<em>{k, j}, h^{&#92;leftarrow}</em>{k, j} | j=1, 2, ..., L&#92;}=&#92;{h_{k, j} | j=0, 1, ..., L&#92;}
 $$
 
 对于不同的任务，ELMo 表示为
 
 $$
-ELMo_{k}^{task} = E(R_{k}; \\theta^{task}) = \\gamma^{task} \\sum \\limits_{j=0}^{L} s_{j}^{task} h_{k, j}
+ELMo_{k}^{task} = E(R_{k}; &#92;theta^{task}) = &#92;gamma^{task} &#92;sum &#92;limits_{j=0}^{L} s_{j}^{task} h_{k, j}
 $$
 
 其中，$$s^{task}$$ 为 softmax-normalized weights. 
-$$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the entire ELMo vector, 其在实际中能帮助训练.
+$$&#92;gamma^{task}$$ 为 scalar parameter that allows the task model to scale the entire ELMo vector, 其在实际中能帮助训练.
 
 另外，考虑到 biLM 每一层的激活有着不同的分布，有时候在做加权之前做layer normalization 也会有用.
 
@@ -66,7 +68,7 @@ $$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the 
 假设现在已有一个 pre-trained 的 biLM，和一个任务特定的监督模型，可以很方便的利用 biLM 来提升监督模型的性能。
 
 比如，现在的监督任务模型使用通常的 word embedding $$x_{emb}$$ 作为输入，经过几层 RNN，每个词得到一个相应的输出 $$h_{rnn}$$。
-为了利用pre-trained biLM，将 biLM 的参数固定住，为每个词计算相应的 $$ELMo^{task}$$ (参数 $$s^{task}$$ 和 $$\\gamma^{task}$$ 可以和监督任务模型进行联合训练得到).
+为了利用pre-trained biLM，将 biLM 的参数固定住，为每个词计算相应的 $$ELMo^{task}$$ (参数 $$s^{task}$$ 和 $$&#92;gamma^{task}$$ 可以和监督任务模型进行联合训练得到).
 可以有几种方式使用 $$ELMo^{task}$$:
 
 <ul>
@@ -75,7 +77,7 @@ $$\\gamma^{task}$$ 为 scalar parameter that allows the task model to scale the 
 <li>将 ELMo 同时加在 RNN 的输入层和输出层.</li>
 </ul>
 
-最后，在使用 ELMo 的过程中，加上一些 dropout 或者 regularize，可能会更好. (<strong>加在 $$s^{task},\\gamma^{task}$$ 上??? 毕竟biLM 参数不是固定了吗???</strong>)
+最后，在使用 ELMo 的过程中，加上一些 dropout 或者 regularize，可能会更好. (<strong>加在 $$s^{task},&#92;gamma^{task}$$ 上??? 毕竟biLM 参数不是固定了吗???</strong>)
 
 <blockquote>
   Finally, we found it beneficial to add a moderate amount of dropout to ELMo and in some cases to regularize the ELMo weights by adding w^2 to the loss. This imposes an inductive bias on the ELMo weights to stay close to an average of all biLM layers.
