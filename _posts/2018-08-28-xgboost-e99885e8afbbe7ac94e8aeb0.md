@@ -12,7 +12,11 @@ permalink: 'http://blog.tvect.cc/2018/08/28/xgboost-%e9%98%85%e8%af%bb%e7%ac%94%
 published: true
 post_date: 2018-08-28 15:52:26
 ---
+[toc]
+
 本文是很早之前阅读 XGBoost A Scalable Tree Boosting System 的笔记。以前是在 <a href="http://note.youdao.com/noteshare?id=e08d817ffc9c77c52be776a413fc641d&amp;sub=C35545F459634CFFA9CE7D227BF9FFD0">网易云笔记</a>上面，这里只是简单的搬运过来。
+
+<!--more-->
 
 <h1>概述</h1>
 
