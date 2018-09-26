@@ -11,6 +11,10 @@ permalink: 'http://blog.tvect.cc/2018/09/26/a-network-based-end-to-end-trainable
 published: true
 post_date: 2018-09-26 17:54:19
 ---
+[toc]
+
+<!--more-->
+
 笔记梗概如下，待完善细节
 
 <h1>概述</h1>
