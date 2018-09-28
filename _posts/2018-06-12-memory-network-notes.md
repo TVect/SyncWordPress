@@ -9,6 +9,12 @@ permalink: >
 published: true
 post_date: 2018-06-12 17:24:11
 ---
+[toc]
+
+<!--more-->
+
+<hr />
+
 <h1>概述</h1>
 
 大部分的机器学习方法缺乏一个可以和 inference 部分无缝衔接的 简单的 可读写的 长时记忆模块。
@@ -47,7 +53,7 @@ $$o_{2} = O_{2}(x, m) = argmax \ S_{o}([x, m_{o_{1}}], m_{i})$$
 
 选择出最相关的 top k 个memory slot 之后。将其作为R模块的输入，用于生成最终的答案。这里简单就是使用与上面相同的评分函数计算所有候选词与R输入的相关性，得分最高的词语就作为正确答案输出即可：
 $$
-r = argmax_{w \\in W} \ S_{R}([x, m_{o1}, m_{o2}], w)
+r = argmax_{w &#92;in W} \ S_{R}([x, m_{o1}, m_{o2}], w)
 $$
 
 对于需要产生一个句子输出的情况下，也可以在 R 模块使用 RNN LM.
@@ -62,7 +68,7 @@ $$
 最终的损失函数选为：
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/06/memnet-loss-1024x226.jpg" alt="" />
 
-<pre class="line-numbers prism-highlight" data-start="1"><code class="language-null">(6) 有没有挑选出正确的第一句话
+<pre><code class="">(6) 有没有挑选出正确的第一句话
 (7) 正确挑选出了第一句话后能不能正确挑出第二句话
 (6)+(7) 合起来就是能不能挑选出正确的语境，用来训练 attention 参数
 (8) 把正确的 supporting fact 作为输入，能不能挑选出正确的答案，来训练 response 参数
