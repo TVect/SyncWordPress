@@ -10,7 +10,11 @@ post_date: 2018-01-26 15:53:23
 ---
 tensorflow中有crf layer的实现, 下面是根据自己的理解对代码做的注释
 
-<pre class="line-numbers prism-highlight" data-start="1"><code class="language-python">def _lengths_to_masks(lengths, max_length):
+<!--more-->
+
+<hr />
+
+<pre><code class="language-python ">def _lengths_to_masks(lengths, max_length):
   tiled_ranges = array_ops.tile(array_ops.expand_dims(math_ops.range(max_length), 0), [array_ops.shape(lengths)[0], 1])
   lengths = array_ops.expand_dims(lengths, 1)
   # mask [lengths.shape[0], max_length], 每一行前面几个为 1.0
