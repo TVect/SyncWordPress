@@ -8,16 +8,22 @@ permalink: 'http://blog.tvect.cc/2016/08/09/numpy-ndarray%e7%b1%bb%e5%9e%8b%e4%b
 published: true
 post_date: 2016-08-09 12:43:01
 ---
+[toc]
+
+<!--more-->
+
+<hr />
+
 在numpy的reshape和ravel函数说明中指出在必要时会返回对象的拷贝。
 numpy.reshape()中指出：
 
-<pre class="prism-highlight line-numbers" data-start="1"><code class="language-null">This will be a new view object if possible; otherwise, it will be a copy.  
+<pre><code>This will be a new view object if possible; otherwise, it will be a copy.  
 Note there is no guarantee of the *memory layout* (C- or Fortran- contiguous) of the returned array.
 </code></pre>
 
 numpy.ravel()中指出：
 
-<pre class="prism-highlight line-numbers" data-start="1"><code class="language-null">A 1-D array, containing the elements of the input, is returned.  A copy is made only if needed.
+<pre><code>A 1-D array, containing the elements of the input, is returned.  A copy is made only if needed.
 </code></pre>
 
 下面就自己的理解做一下解释。
@@ -40,7 +46,7 @@ strides中保存的是当每个轴的下标增加1时，数据存储区中的指
 
 <h3>案例1：基本函数</h3>
 
-<pre class="line-numbers prism-highlight" data-start="1"><code class="language-python">&gt;&gt;&gt; c = a.view()  
+<pre><code class="language-python ">&gt;&gt;&gt; c = a.view()  
 &gt;&gt;&gt; c is a  
 False  
 &gt;&gt;&gt; c.base is a      #c是a持有数据的镜像  
@@ -60,7 +66,7 @@ array([[   0,    1,    2,    3],
 
 <h3>案例2：reshape返回view还是copy？</h3>
 
-<pre class="line-numbers prism-highlight" data-start="1"><code class="language-python">&gt;&gt;&gt; arr = np.arange(12).reshape((3,4))
+<pre><code class="language-python ">&gt;&gt;&gt; arr = np.arange(12).reshape((3,4))
 &gt;&gt;&gt; print arr.strides, arr[::2][::2].strides    # 返回view
 (16L, 4L) (32L, 8L)
 &gt;&gt;&gt; print arr.T.strides, arr.T[::2][::2].strides    # 返回view
@@ -78,7 +84,7 @@ False
 
 <h3>案例3：flatten和ravel操作对比</h3>
 
-<pre class="line-numbers prism-highlight" data-start="1"><code class="language-python">&gt;&gt;&gt; arr = np.arange(12).reshape((3,4))
+<pre><code class="language-python ">&gt;&gt;&gt; arr = np.arange(12).reshape((3,4))
 &gt;&gt;&gt; print np.may_share_memory(arr.flatten(), arr)    #flatten：return a copy of the array collapsed into one dimension
 False
 &gt;&gt;&gt; print np.may_share_memory(arr.ravel(), arr)    #ravel：返回view
@@ -90,7 +96,7 @@ False
 解释：
 成员函数.ravel()，等价于numpy.ravel()，其说明如下：
 
-<pre class="prism-highlight line-numbers" data-start="1"><code class="language-null">Return a contiguous flattened array.
+<pre><code>Return a contiguous flattened array.
 A 1-D array, containing the elements of the input, is returned.  A copy is made only if needed.
 </code></pre>
 
@@ -99,7 +105,7 @@ A 1-D array, containing the elements of the input, is returned.  A copy is made 
 
 <h3>案例4：resize操作成功还是失败？</h3>
 
-<pre class="line-numbers prism-highlight" data-start="1"><code class="language-python">&gt;&gt;&gt; arr = np.arange(8)
+<pre><code class="language-python ">&gt;&gt;&gt; arr = np.arange(8)
 &gt;&gt;&gt; arr.resize(12)    # 注意成员函数resize，numpy通用函数resize的区别
 &gt;&gt;&gt; arr.resize((2,4)); print arr    # resize操作成功
 [[0 1 2 3]
@@ -113,12 +119,12 @@ by another array in this way.  Use the resize function
 解释：
 成员函数会抛出异常ValueError
 
-<pre class="prism-highlight line-numbers" data-start="1"><code class="language-null">    If `a` does not own its own data or references or views to it exist, and the data memory must be changed.
+<pre><code>    If `a` does not own its own data or references or views to it exist, and the data memory must be changed.
 </code></pre>
 
 而通用函数numpy.resize(), 不会抛出上述异常。因为成员函数ndarray.resize()是对array进行原地修改的，而numpy.resize()则不会对原对象做修改，只是返回一个新的指定shape的array
 另外，numpy.resize()和numpy.resize()还有如下不同：
 
-<pre class="prism-highlight line-numbers" data-start="1"><code class="language-null">If the new array is larger than the original array, then the new array is filled with repeated copies of `a`.  
+<pre><code>If the new array is larger than the original array, then the new array is filled with repeated copies of `a`.  
 Note that this behavior is different from a.resize(new_shape) which fills with zeros instead of repeated copies of `a`.
 </code></pre>
