@@ -10,6 +10,12 @@ permalink: 'http://blog.tvect.cc/2018/05/24/recursivenn-for-constituency-parsing
 published: true
 post_date: 2018-05-24 17:07:45
 ---
+[toc]
+
+<!--more-->
+
+<hr />
+
 <h1>概述</h1>
 
 <h1>模型</h1>
