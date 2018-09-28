@@ -9,6 +9,12 @@ permalink: >
 published: true
 post_date: 2018-06-12 17:24:21
 ---
+[toc]
+
+<!--more-->
+
+<hr />
+
 <h1>概述</h1>
 
 <strong>Two grand challenges</strong>：
@@ -43,11 +49,11 @@ post_date: 2018-06-12 17:24:21
 
 每个输入 $$x_{i}$$ 还对应着一个 output vector $$c_{i}$$. 最简单的方法, 可以通过另一个 embedding matrix C 得到（与前面的memory vector类似）.
 
-最后通过$$p_{i}$$ 和 $$c_{i}$$ 做 weighted sum, 得到输出表示：$$o = \\sum_{i} p_{i} c_{i}$$
+最后通过$$p_{i}$$ 和 $$c_{i}$$ 做 weighted sum, 得到输出表示：$$o = &#92;sum_{i} p_{i} c_{i}$$
 
 <h3>Generating the final prediction</h3>
 
-利用前面得到的 output vector o 和 input embedding u, 得到最终的预测：$$\\hat {a} = Softmax(W(o + u))$$, 其中 $$W \\in R^{V*d}$$
+利用前面得到的 output vector o 和 input embedding u, 得到最终的预测：$$&#92;hat {a} = Softmax(W(o + u))$$, 其中 $$W &#92;in R^{V*d}$$
 
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/06/end2end-memnet-1024x509.png" alt="" />
 
@@ -62,7 +68,7 @@ $$ u^{k+1} = u^{k} + o^{k} $$</li>
 <li>每一层都有自己的 embedding matrix $$A_{k}, C_{k}$$,
 可以通过施加一些限制，来达到减少参数，简化训练的目的。</li>
 <li>在最后一层，同样也结合该层的input 和 output，来产生response
-$$\\hat {a} = Softmax(Wu^{K+1}) = Softmax(W (o_{K} + u_{K}))$$</li>
+$$&#92;hat {a} = Softmax(Wu^{K+1}) = Softmax(W (o_{K} + u_{K}))$$</li>
 </ul>
 
 文章中尝试了两种形式的权重共享：
@@ -93,12 +99,12 @@ $$C^{1} = C^{2} = ... = C^{K}$$
 
 <ol>
 <li>bag-of-words (BoW) representation
-对于句子 $$x_{i} = {x_{i1}; x_{i2}; ... ; x_{in} }$$, 得到的相应的 memory vector 为：$$m_{i} = \\sum_{j} A x_{ij}$$, 得到的相应的 output vector 为： $$c_{i} = \\sum_{j} C x_{ij}$$.
-对于 query q, 得到的表示为：$$u = \\sum_{i} B q_{i}$$
+对于句子 $$x_{i} = {x_{i1}; x_{i2}; ... ; x_{in} }$$, 得到的相应的 memory vector 为：$$m_{i} = &#92;sum_{j} A x_{ij}$$, 得到的相应的 output vector 为： $$c_{i} = &#92;sum_{j} C x_{ij}$$.
+对于 query q, 得到的表示为：$$u = &#92;sum_{i} B q_{i}$$
 <strong>这种方法无法捕获词的顺序的信息</strong>。</p></li>
 <li><p><strong>position encoding</strong>
-$$ m_{i} = \\sum_{j} l_{j} \\cdot A x_{ij} $$
-其中 $$ \\cdot $$ 表示元素乘法操作
+$$ m_{i} = &#92;sum_{j} l_{j} &#92;cdot A x_{ij} $$
+其中 $$ &#92;cdot $$ 表示元素乘法操作
 $$ l_{j} $$是一个列向量，满足 $$ l_{kj} = (1-j/J)-(k/d)(1-2j/J) $$, $$ J $$是 sentence中 word 的个数, $$ d $$是 embedding 的维度。</p></li>
 </ol>
 
