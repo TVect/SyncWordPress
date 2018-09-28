@@ -9,7 +9,14 @@ permalink: >
 published: true
 post_date: 2018-05-15 18:46:55
 ---
+[toc]
+
 <strong>下面是 Attention is all you need 的翻译或者说笔记。</strong>
+
+<!--more-->
+
+<hr />
+
 Seq2Seq 模型中使用 RNN 时，会有时序依赖，无法并行。同时 RNN 中要建立 long range dependencies，需要 O(range) 次计算。这篇文章和之前一篇 ConvS2S，都旨在解决上述问题。
 
 ConvS2S使用CNN取代了RNN，而这篇文章则摒弃了RNN和CNN，直接使用attention建模。
@@ -48,7 +55,7 @@ query,keys, values, and output are all vectors.
 queries and keys have same dimensionality $$d_{k}$$, value have dimensionality $$d_{v}$$
 
 $$
-Attention(q, K, V) = \\sum_{i} \\frac{exp(q*k_{i})}{(\\sum_{j} exp(q*k_{j}))} v_{i}
+Attention(q, K, V) = &#92;sum_{i} &#92;frac{exp(q<em>k_{i})}{(&#92;sum_{j} exp(q</em>k_{j}))} v_{i}
 $$
 
 当有多个 query 的时候, 可以把这些 query 向量堆叠成矩阵 $$Q$$, 进而有：
@@ -62,14 +69,14 @@ $$
 
 <strong>Problem</strong>:
 As $$d_{k}$$ gets large, the variance of $$q*k$$ increases,
-$$\\rightarrow$$ some values inside the softmax get larger,
-$$\\rightarrow$$ the softmax gets very peaked,
-$$\\rightarrow$$ hence its gradient gets smaller.
+$$&#92;rightarrow$$ some values inside the softmax get larger,
+$$&#92;rightarrow$$ the softmax gets very peaked,
+$$&#92;rightarrow$$ hence its gradient gets smaller.
 
 <strong>Solution</strong>:
 Scale by length of query/key vectors
 $$
-Attention(Q, K, V) = softmax(\\frac{QK^{T}}{\\sqrt{d_{k}}}) v_{i}
+Attention(Q, K, V) = softmax(&#92;frac{QK^{T}}{&#92;sqrt{d_{k}}}) v_{i}
 $$
 
 <h3>Multi-Head Attention</h3>
@@ -78,9 +85,9 @@ $$
 
 $$ MultiHead(Q, K, V) = Concat(head_{1}, ..., head_{k}) W^{O} $$
 
-$$ where \\quad head_{i} = Attention(QW_{i}^{Q}, KW_{i}^{K}, VW_{i}^{V}) $$
+$$ where &#92;quad head_{i} = Attention(QW_{i}^{Q}, KW_{i}^{K}, VW_{i}^{V}) $$
 
-$$ W_{i}^{Q} \\in R^{d_{model}*d_{k}},  W_{i}^{K} \\in R^{d_{model}*d_{k}}, W_{i}^{V} \\in R^{d_{model}*d_{v}}, W^{O} \\in R^{hd_{v}*d_{model}} $$
+$$ W_{i}^{Q} &#92;in R^{d_{model}<em>d_{k}},  W_{i}^{K} &#92;in R^{d_{model}</em>d_{k}}, W_{i}^{V} &#92;in R^{d_{model}<em>d_{v}}, W^{O} &#92;in R^{hd_{v}</em>d_{model}} $$
 
 <h3>Applications of Attention in our Model</h3>
 
@@ -103,7 +110,7 @@ $$ FFN(x) = max(0, xW_{1} + b_{1}) W_{2} + b_{2} $$
 <h2>Embeddings and Softmax</h2>
 
 与其他序列转导模型类似，我们使用学习到的嵌入将输入词符和输出词符转换为维度为$$d_{model}$$ 的向量。 我们还使用普通的线性变换和 softmax 函数将解码器输出转换为预测的下一个词符的概率。
-在我们的模型中，两个嵌入层之间和pre-softmax线性变换共享相同的权重矩阵。 在嵌入层中，我们将这些权重乘以 $$ \\sqrt{d_{model}} $$ ???
+在我们的模型中，两个嵌入层之间和pre-softmax线性变换共享相同的权重矩阵。 在嵌入层中，我们将这些权重乘以 $$ &#92;sqrt{d_{model}} $$ ???
 
 <h2>Positional Encoding</h2>
 
@@ -113,9 +120,9 @@ $$ FFN(x) = max(0, xW_{1} + b_{1}) W_{2} + b_{2} $$
 
 有多种位置编码可以选择，文章中使用的位置编码如下：
 
-$$ PE(pos, 2i) = sin(\\frac{pos}{10000^{2i/d_{model}}}) $$
+$$ PE(pos, 2i) = sin(&#92;frac{pos}{10000^{2i/d_{model}}}) $$
 
-$$ PE(pos, 2i+1) = cos(\\frac{pos}{10000^{2i/d_{model}}}) $$
+$$ PE(pos, 2i+1) = cos(&#92;frac{pos}{10000^{2i/d_{model}}}) $$
 
 其中pos 是位置，i 是维度。
 
