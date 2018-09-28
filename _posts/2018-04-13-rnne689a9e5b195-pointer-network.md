@@ -8,6 +8,12 @@ permalink: 'http://blog.tvect.cc/2018/04/13/rnn%e6%89%a9%e5%b1%95-pointer-networ
 published: true
 post_date: 2018-04-13 14:22:58
 ---
+[toc]
+
+<!--more-->
+
+<hr />
+
 <h1>概述</h1>
 
 在传统的seq2seq的方法中，输出部分的字典长度需要提前固定住，比如在NMT中，decoder部分的字典大小是固定的。
