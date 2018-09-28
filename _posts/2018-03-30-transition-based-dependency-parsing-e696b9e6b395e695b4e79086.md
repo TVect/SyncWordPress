@@ -10,6 +10,12 @@ permalink: 'http://blog.tvect.cc/2018/03/30/transition-based-dependency-parsing-
 published: true
 post_date: 2018-03-30 13:50:12
 ---
+[toc]
+
+<!--more-->
+
+<hr />
+
 <h1>Dependency Parsing简介</h1>
 
 将句子分析成一颗依存句法树，描述出各个词语之间的依存关系。
