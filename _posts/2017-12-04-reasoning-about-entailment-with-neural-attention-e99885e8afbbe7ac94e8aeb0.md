@@ -12,6 +12,10 @@ post_date: 2017-12-04 22:23:59
 ---
 [toc]
 
+<!--more-->
+
+<hr />
+
 <h1>概述</h1>
 
 It is the first generic end-to-end differentiable system that achieves state-of-the-art accuracy on a textual entailment dataset
