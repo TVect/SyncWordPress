@@ -1,6 +1,8 @@
 ---
 ID: 776
-post_title: Language Understanding 文章汇总
+post_title: >
+  Language Understanding 文章汇总 –
+  pipeline
 author: Chin
 post_excerpt: ""
 layout: post
@@ -13,8 +15,6 @@ post_date: 2018-09-30 07:44:54
 初步整理的 Language Understanding 的资料, 细节图片等待进一步补充.
 
 <!--more-->
-
-[toc]
 
 <h1>Pipeline</h1>
 
@@ -119,43 +119,3 @@ MODEL 3 中会贪婪的做 segmentation 和 labeling. 会先结合 encoder hidde
 试验在 text chunking 和 slot filling 上都有 state-of-the-art 的效果, 试验结果还说明了使用 Pointer network 比使用 IOB 效果要好.
 
 <h2>Multi-task</h2>
-
-<h1>Joint-Model</h1>
-
-<h2>Attention-Based RNN for Joint Intent Detection and Slot Filling</h2>
-
-<h2>Multi-Domain Joint Semantic Frame Parsing using Bi-directional RNN-LSTM</h2>
-
-为了联合的建模domain, intent,slots, 这里在每句话后面加上了<EOS>,并为它赋予标签domain-intent
-
-文章中比较了四种设定下的试验结果:
-
-<ol>
-<li>SD-Sep</li>
-</ol>
-
-For each domain, a separate intent detection and slot filling model was trained, resulting in 2 × jDj classifiers, where jDj is the number of domains. Optimum parameters were found on the development set for each experiment and used for computing performance on the test set. The output of all the classifiers were joined for overall error rates.
-
-<ol start="2">
-<li>SD-Joint</li>
-</ol>
-
-For each domain, a single model that estimates both intent and sequence of slots was used, resulting in jDj classifiers.
-
-<ol start="3">
-<li>MD-Sep</li>
-</ol>
-
-An intent detection model and a slot filling model were trained using data from all the domains, resulting in 2 classifiers. The output of intent detection was merged with the output of slot filling for computing overall template error rates.
-
-<ol start="4">
-<li>MD-Joint:</li>
-</ol>
-
-A single classifier for estimating the full semantic frame that includes domain, intent, and slots for each utterance was trained using all the data
-
-结果：
-
-In both single-domain and multi-domain settings, intent detection accuracy improves with joint training (although small), but slot filling degrades.
-
-<h1>Contextual LU</h1>
