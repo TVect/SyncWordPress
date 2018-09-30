@@ -10,6 +10,8 @@ permalink: http://blog.tvect.cc/archives/776
 published: true
 post_date: 2018-09-30 07:44:54
 ---
+[toc]
+
 初步整理的 Language Understanding 的资料, 细节图片等待进一步补充.
 
 <!--more-->
