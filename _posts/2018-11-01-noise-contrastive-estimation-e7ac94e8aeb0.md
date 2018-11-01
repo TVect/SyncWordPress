@@ -8,7 +8,9 @@ permalink: http://blog.tvect.cc/archives/779
 published: true
 post_date: 2018-11-01 10:45:38
 ---
-NCE 相关的笔记整理
+[toc]
+
+NCE 相关的笔记整理, 包括了 NCE 的原理, 有效性证明, 代码实现说明 等。
 
 <!--more-->
 
@@ -25,7 +27,7 @@ NCE 相关的笔记整理
 设计思路可以参考 [文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies], [文章: A fast and simple algorithm for training neural probabilistic language model],
 
 <ul>
-<li>关于 normalizer</li>
+<li><strong>关于 normalizer</strong></li>
 </ul>
 
 [文章: A fast and simple algorithm for training neural probabilistic language model]中有详细提到 normalizing constants 的处理。
@@ -34,11 +36,16 @@ NCE 相关的笔记整理
 
 [博客: On word embeddings - Part 2: Approximating the Softmax] 和 [文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies] 也对这块有类似的说明，并且说，让模型自己去学习 normalizing constant 的话，学到的 normalizing constant 也会接近于 1，且方差很小。
 
+<ul>
+<li><strong>关于 Candidate Sampling</strong></li>
+</ul>
+
 <h1>参考资料</h1>
 
 <ul>
 <li><p><a href="http://www.aclweb.org/anthology/N16-1145">文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies</a></p></li>
 <li><p><a href="https://arxiv.org/abs/1206.6426">文章: A fast and simple algorithm for training neural probabilistic language model</a></p></li>
 <li><p><a href="http://ruder.io/word-embeddings-softmax/index.html">博客: On word embeddings - Part 2: Approximating the Softmax</a></p></li>
+<li><p><a href="http://www.tensorflow.org/extras/candidate_sampling.pdf">candidate sampling</a></p></li>
 <li><p><a href="https://spaces.ac.cn/archives/5617">博客: “噪声对比估计”杂谈：曲径通幽之妙</a></p></li>
 </ul>
