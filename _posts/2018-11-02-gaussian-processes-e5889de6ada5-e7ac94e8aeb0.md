@@ -20,9 +20,19 @@ post_date: 2018-11-02 17:32:15
 
 高斯过程可以看做是多维高斯分布在无限维上的扩展。
 
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/gp-768x519.png" alt="" />
+
 <h1>Gaussian Processes for Regression</h1>
 
+<h2>Noiseless GP regression</h2>
+
+<h2>Noisy GP regression</h2>
+
 <h1>Gaussian Processes for Classification</h1>
+
+<h1>相关知识</h1>
+
+<h2>Gaussian basics</h2>
 
 <h2>Laplace Approximation</h2>
 
