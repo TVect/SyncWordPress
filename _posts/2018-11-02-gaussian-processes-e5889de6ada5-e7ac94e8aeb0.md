@@ -41,30 +41,31 @@ post_date: 2018-11-02 17:32:15
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/11/noise-gp-768x582.png" alt="" />
 
 <ul>
-<li>案例</li>
+<li><strong>案例</strong></li>
 </ul>
 
-<img src="https://note.youdao.com/yws/public/resource/230c942e92b165497c524d15d269d2d5/xmlnote/CF279C2C30074AB1AA241F22E1607E70/15420" alt="image" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/regression-demo.png" alt="" />
 
 <h1>Gaussian Processes for Classification</h1>
 
-定义模型为 <code>$ p(y_i|x_i) = \sigma (y_if(x_i)) $</code>, 其中, <code>$ \sigma $</code> 为 sigmoid 函数. 注意, <code>$f \sim GP(0, k)$</code>, 但是 <code>$y$</code> 不再服从高斯过程.
+定义模型为 $ p(y_i|x_i) = \sigma (y_if(x_i)) $, 其中, $ \sigma $ 为 sigmoid 函数. 注意, $f \sim GP(0, k)$, 但是 $y$ 不再服从高斯过程.
 
-<code>$ p(y_* | \bold y_N) = \int p(y_*|f_*)p(f_*|\bold y_N) df_*$</code>
+<div class="katex math multi-line no-emojify">p(y_* | \bold y_N) = \int p(y_*|f_*)p(f_*|\bold y_N) df_*
+</div>
 
-其中,<code>$ \bold y_N = {y_1, y_2, ..., y_N}$</code>. 上式右边积分中, 第一项已经知道是一个 sigmoid 函数.
+其中,$ \bold y_N = {y_1, y_2, ..., y_N}$. 上式右边积分中, 第一项已经知道是一个 sigmoid 函数.
 
 上面整个的积分没有解析解, 所以可以考虑作近似, 比如 sampling methods 或者是 analytical approximation. 因为有对 sigmoid 函数和高斯分布做卷积的近似公式, 所以这里试图把第二项也表示为一个高斯分布, 或者是用一个高斯分布近似.
 
 <div class="katex math multi-line no-emojify"> \begin{aligned}
-p(f_*|\bold y_N) &amp;= \int p(f_*, \bold f_N | \bold y_N) d \bold f_N \\\\
-&amp;= \frac{1}{p(\bold y_N)} \int p(f_*, \bold f_N) p(\bold y_N | f_*, \bold f_N) d \bold f_N \\\\
-&amp;= \frac{1}{p(\bold y_N)} \int p(f_* | \bold f_N) p(\bold f_N)p(\bold y_N | f_*, \bold f_N) d \bold f_N \\\\
+p(f_*|\bold y_N) &amp;= \int p(f_*, \bold f_N | \bold y_N) d \bold f_N \\
+&amp;= \frac{1}{p(\bold y_N)} \int p(f_*, \bold f_N) p(\bold y_N | f_*, \bold f_N) d \bold f_N \\
+&amp;= \frac{1}{p(\bold y_N)} \int p(f_* | \bold f_N) p(\bold f_N)p(\bold y_N | f_*, \bold f_N) d \bold f_N \\
 &amp;= \int p(f_* | \bold f_N) p(\bold f_N | \bold y_N) d \bold f_N
 \end{aligned}
 </div>
 
-因为 <code>$f \sim GP(0, k)$</code>, 上面积分号中第一项可以利用 GP for regression 中类似的方式得出.
+因为 $f \sim GP(0, k)$, 上面积分号中第一项可以利用 GP for regression 中类似的方式得出.
 
 <div class="katex math multi-line no-emojify">p(f_* | \bold f_N) = N(f_* | k^T_*K^{-1} \bold y_N, k_{**}-k^T_*K^{-1}k_*)
 </div>
@@ -74,19 +75,16 @@ p(f_*|\bold y_N) &amp;= \int p(f_*, \bold f_N | \bold y_N) d \bold f_N \\\\
 <div class="katex math multi-line no-emojify">p(\bold f_N | \bold y_N) = \frac {p(\bold y_N| \bold f_N) p(\bold f_N)}{Z}
 </div>
 
-<div class="katex math multi-line no-emojify">p(\bold f_N | \bold y_N) \sim q(\bold f_N | \bold y_N) = N(\bold f_{*N}, (K^{-1} + W)^{-1})
-
-\bold f_{*N} = K \triangledown log \, p(\bold y_N | \bold f_{*N})
-
+<div class="katex math multi-line no-emojify">p(\bold f_N | \bold y_N) \sim q(\bold f_N | \bold y_N) = N(\bold f_{*N}, (K^{-1} + W)^{-1}) \\
+\bold f_{*N} = K \triangledown log \, p(\bold y_N | \bold f_{*N}) \\
 W = - \triangledown \triangledown log \, p(\bold y_N | \bold f_{N})
 </div>
 
-上面的 <code>$\bold f_{*N}$</code> 需要迭代求解.
+上面的 $ \bold f_{*N} $ 需要迭代求解.
 
 最终有:
 
-<div class="katex math multi-line no-emojify">E[f_*|\bold y_N] = K^T (\bold y_N - \bold \sigma_N)
-
+<div class="katex math multi-line no-emojify">E[f_*|\bold y_N] = K^T (\bold y_N - \bold \sigma_N) \\
 var[f_*|\bold y_N] = k_{**} - k_*^T(W_N^{-1} + K)^{-1}k_*
 </div>
 
@@ -94,29 +92,25 @@ var[f_*|\bold y_N] = k_{**} - k_*^T(W_N^{-1} + K)^{-1}k_*
 <li>案例</li>
 </ul>
 
-<img src="https://note.youdao.com/yws/public/resource/230c942e92b165497c524d15d269d2d5/xmlnote/9F57C1AA7B0D4D9CA85D7670424A0476/15426" alt="image" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/classification-demo-768x348.png" alt="" />
 
 <h1>相关知识</h1>
 
 <h2>Gaussian basics</h2>
 
-<img src="https://note.youdao.com/yws/public/resource/230c942e92b165497c524d15d269d2d5/xmlnote/74FD6D7A0AAE49C7B9DDBC9E519E79C3/15742" alt="image" />
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/gaussian_basics.png" alt="" />
 
 <h2>Laplace Approximation</h2>
 
-给定一个分布 <code>$p(z)$</code>, Laplace Approximation 的目标是要找一个近似的高斯分布 <code>$q(z)$</code>, 其均值在 <code>$p(z)$</code> 的 mode 处, 其方差通过对 <code>$ ln p(z) $</code>在 mode 处做 Taylor expansion 得到.
+给定一个分布 $p(z)$, Laplace Approximation 的目标是要找一个近似的高斯分布 $q(z)$, 其均值在 $p(z)$ 的 mode 处, 其方差通过对 $ ln p(z) $ 在 mode 处做 Taylor expansion 得到.
 
 <ul>
-<li>原理</li>
+<li><strong>原理</strong>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/laplace-approximation.png" alt="" /></p></li>
+<li><p><strong>案例</strong></p></li>
 </ul>
 
-<img src="https://note.youdao.com/yws/public/resource/230c942e92b165497c524d15d269d2d5/xmlnote/1E666A52CDE8497F8DCC65BFA4D9F8B4/15461" alt="image" />
-
-<ul>
-<li>案例</li>
-</ul>
-
-<img src="https://note.youdao.com/yws/public/resource/230c942e92b165497c524d15d269d2d5/xmlnote/057825F3D86D4C0CA133167B28FCC01B/15463" alt="image" />
+<p><img src="http://blog.tvect.cc/wp-content/uploads/2018/11/laplace-demo.png" alt="" />
 
 <h1>参考资料</h1>
 
