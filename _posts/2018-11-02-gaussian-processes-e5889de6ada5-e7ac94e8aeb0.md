@@ -41,10 +41,9 @@ post_date: 2018-11-02 17:32:15
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/11/noise-gp-768x582.png" alt="" />
 
 <ul>
-<li><strong>案例</strong></li>
+<li><strong>案例</strong>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/regression-demo.png" alt="" /></li>
 </ul>
-
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/regression-demo.png" alt="" />
 
 <h1>Gaussian Processes for Classification</h1>
 
@@ -89,10 +88,9 @@ var[f_*|\bold y_N] = k_{**} - k_*^T(W_N^{-1} + K)^{-1}k_*
 </div>
 
 <ul>
-<li>案例</li>
+<li><strong>案例</strong>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/classification-demo-768x348.png" alt="" /></li>
 </ul>
-
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/classification-demo-768x348.png" alt="" />
 
 <h1>相关知识</h1>
 
@@ -105,12 +103,11 @@ var[f_*|\bold y_N] = k_{**} - k_*^T(W_N^{-1} + K)^{-1}k_*
 给定一个分布 $p(z)$, Laplace Approximation 的目标是要找一个近似的高斯分布 $q(z)$, 其均值在 $p(z)$ 的 mode 处, 其方差通过对 $ ln p(z) $ 在 mode 处做 Taylor expansion 得到.
 
 <ul>
-<li><strong>原理</strong>
+<li><p><strong>原理</strong>
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/11/laplace-approximation.png" alt="" /></p></li>
-<li><p><strong>案例</strong></p></li>
+<li><p><strong>案例</strong>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/11/laplace-demo.png" alt="" /></p></li>
 </ul>
-
-<p><img src="http://blog.tvect.cc/wp-content/uploads/2018/11/laplace-demo.png" alt="" />
 
 <h1>参考资料</h1>
 
