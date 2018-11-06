@@ -18,7 +18,11 @@ post_date: 2018-11-01 10:45:38
 
 <h1>NCE 原理</h1>
 
-<hr />
+NCE 的基本想法是对观测数据和人工噪声样本做对比区分，从而发现真实样本中的规律。
+
+<blockquote>
+  The idea is to perform nonlinear logistic regression to discriminate between the observed data and some artificially generated noise, using the model log-density function in the regression nonlinearity. We show that this leads to a consistent (convergent) estimator of the parameters, and analyze the asymptotic variance. In particular, the method is shown to directly work for unnormalized models, i.e. models where the density function does not integrate to one. The normalization constant can be estimated just like any other parameter.
+</blockquote>
 
 <h2>Definitions</h2>
 
