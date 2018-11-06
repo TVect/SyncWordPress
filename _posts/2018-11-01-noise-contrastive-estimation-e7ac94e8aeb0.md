@@ -102,37 +102,43 @@ f = v \frac {p_n} {p_d}
 
 (注意, 前面已经假设存在着一个 $ \theta^* $, 使得 $ p_d(.) = p_m(.;\theta^*) $)
 
+<strong>Tips</strong>: 另外的证明方式可以参见 <a href="https://spaces.ac.cn/archives/5617">博客: “噪声对比估计”杂谈：曲径通幽之妙</a>
+
 <h1>NCE 和 Negative Sampling</h1>
 
-现在令
+在语言模型的例子中，NCE 具体化为:
 
-<div class="katex math multi-line no-emojify">G(u;\theta) = ln \frac{p_m(u;\theta)}{p_n(u)} = ln \, p_m(u;\theta) - ln \, p_n(u)  \\\\
-
-h(u; \theta) = r_v(G(u; \theta)) \\\\
-
-r_v(u) = \frac {1} {1 + v \, exp(-u)}
+<div class="katex math multi-line no-emojify">p(1|c,w) = \frac {u_{\theta}(w|c)}{u_{\theta}(w|c) + k p_n(w)} \\
+p(0|c,w) = \frac {k p_n(w)}{u_{\theta}(w|c) + k p_n(w)}
 </div>
 
-可以对后验分布做进一步改写:
+令 <code>$ k = |V| $</code> 且 <code>$ q(w)$</code> 为均匀分布, 有:
 
-<div class="katex math multi-line no-emojify">p(C=1 | u; \theta) = (1 + v \frac {p_n(u)}{p_m(u; \theta)})^{-1} = r_v(G(u; \theta)) = h(u; \theta)
+<div class="katex math multi-line no-emojify">p(1|c,w) = \frac {u_{\theta}(w|c)}{u_{\theta}(w|c) + |V| \frac {1}{|V|}} = \frac {u_{\theta}(w|c)} {u_{\theta}(w|c) + 1}\\
+p(0|c,w) = \frac {|V| \frac {1}{|V|}}{u_{\theta}(w|c) + |V| \frac {1}{|V|}} = \frac {1}{u_{\theta}(w|c) + 1}
 </div>
+
+再结合 NCE 的优化函数，对比之下，即可知道 negative sampling 可视为 NCE 的特例.
 
 <h1>案例</h1>
 
 <h2>tensorflow 中 nce_loss 实现代码</h2>
 
-设计思路可以参考 [文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies], [文章: A fast and simple algorithm for training neural probabilistic language model],
+设计思路可以参考 <a href="http://www.aclweb.org/anthology/N16-1145">文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies</a>, <a href="https://arxiv.org/abs/1206.6426">文章: A fast and simple algorithm for training neural probabilistic language model</a>,
 
 <ul>
-<li>关于 normalizer</li>
+<li><strong>关于 normalizer</strong></li>
 </ul>
 
-[文章: A fast and simple algorithm for training neural probabilistic language model]中有详细提到 normalizing constants 的处理。
+<a href="https://arxiv.org/abs/1206.6426">文章: A fast and simple algorithm for training neural probabilistic language model</a>中有详细提到 normalizing constants 的处理。
 
 首先从公式中可以看出，在训练词向量的时候应该为每一个 context 学习一个 normalizing constant。 文章中最早也是这么做的，为训练集中每一个 context 学习一个 normalizing constant, 然后把这些 normalizing constant 存在一个 hashtab 中. 但是在 context size 比较大的时候，会比较麻烦。令人震惊的是，文中说他们发现即使把所有的 normalizing constants 固定为 1，也并不会对模型的 performance 有影响。
 
-[博客: On word embeddings - Part 2: Approximating the Softmax] 和 [文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies] 也对这块有类似的说明，并且说，让模型自己去学习 normalizing constant 的话，学到的 normalizing constant 也会接近于 1，且方差很小。
+<a href="http://ruder.io/word-embeddings-softmax/index.html">博客: On word embeddings - Part 2: Approximating the Softmax</a> 和 <a href="http://www.aclweb.org/anthology/N16-1145">文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies</a> 也对这块有类似的说明，并且说，让模型自己去学习 normalizing constant 的话，学到的 normalizing constant 也会接近于 1，且方差很小。
+
+<ul>
+<li><strong>关于采样函数</strong></li>
+</ul>
 
 <h1>参考资料</h1>
 
@@ -141,4 +147,5 @@ r_v(u) = \frac {1} {1 + v \, exp(-u)}
 <li><p><a href="https://arxiv.org/abs/1206.6426">文章: A fast and simple algorithm for training neural probabilistic language model</a></p></li>
 <li><p><a href="http://ruder.io/word-embeddings-softmax/index.html">博客: On word embeddings - Part 2: Approximating the Softmax</a></p></li>
 <li><p><a href="https://spaces.ac.cn/archives/5617">博客: “噪声对比估计”杂谈：曲径通幽之妙</a></p></li>
+<li><p><a href="">candidate_sampling</a></p></li>
 </ul>
