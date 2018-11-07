@@ -61,4 +61,4 @@ def nce_loss(...):
     return out_logits, out_labels
 </code></pre>
 
-关于 candidate sampling 更多更详细的内容可以参考 candidate_sampling](http://www.tensorflow.org/extras/candidate_sampling.pdf)
+关于 candidate sampling 更多更详细的内容可以参考 <a href="http://www.tensorflow.org/extras/candidate_sampling.pdf">candidate_sampling</a>
