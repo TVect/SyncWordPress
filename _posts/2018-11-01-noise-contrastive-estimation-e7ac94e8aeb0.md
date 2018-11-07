@@ -141,8 +141,10 @@ p(0|c,w) = \frac {|V| \frac {1}{|V|}}{u_{\theta}(w|c) + |V| \frac {1}{|V|}} = \f
 <a href="http://ruder.io/word-embeddings-softmax/index.html">博客: On word embeddings - Part 2: Approximating the Softmax</a> 和 <a href="http://www.aclweb.org/anthology/N16-1145">文章: Simple, Fast Noise-Contrastive Estimation for Large RNN Vocabularies</a> 也对这块有类似的说明，并且说，让模型自己去学习 normalizing constant 的话，学到的 normalizing constant 也会接近于 1，且方差很小。
 
 <ul>
-<li><strong>关于采样函数</strong></li>
+<li><strong>关于代码实现</strong></li>
 </ul>
+
+参见后续的博客.
 
 <h1>参考资料</h1>
 
