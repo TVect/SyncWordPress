@@ -151,5 +151,5 @@ p(0|c,w) = \frac {|V| \frac {1}{|V|}}{u_{\theta}(w|c) + |V| \frac {1}{|V|}} = \f
 <li><p><a href="https://arxiv.org/abs/1206.6426">文章: A fast and simple algorithm for training neural probabilistic language model</a></p></li>
 <li><p><a href="http://ruder.io/word-embeddings-softmax/index.html">博客: On word embeddings - Part 2: Approximating the Softmax</a></p></li>
 <li><p><a href="https://spaces.ac.cn/archives/5617">博客: “噪声对比估计”杂谈：曲径通幽之妙</a></p></li>
-<li><p><a href="">candidate_sampling</a></p></li>
+<li><p><a href="http://www.tensorflow.org/extras/candidate_sampling.pdf">candidate_sampling</a></p></li>
 </ul>
