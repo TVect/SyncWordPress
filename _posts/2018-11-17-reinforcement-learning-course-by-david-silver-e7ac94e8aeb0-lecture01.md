@@ -10,6 +10,8 @@ post_date: 2018-11-17 21:54:36
 ---
 [toc]
 
+<!--more-->
+
 <h1>About Reinforcement Learning</h1>
 
 强化学习与其他机器学习分支相比的不同点:
@@ -33,25 +35,32 @@ Reinforcement learning is based on the <strong>reward hypothesis</strong> : All 
 
 <img src="https://pic2.zhimg.com/80/v2-2e404ba62b53818c20d1082375903ad1_hd.png" alt="image" />
 
-At each step t 
-- the agent:
-    - Executes action $A_t$
-    - Receives observation $O_t$
-    - Receives scalar reward $R_t$
-- The environment:
-    - Receives action $A_t$
-    - Emits observation $O_{t+1}$
-    - Emits scalar reward $R_{t+1}$
+At each step t:
+
+<ul>
+<li>the agent:
+executes action $A_t$, Receives observation $O_t$, Receives scalar reward $R_t$</li>
+<li>The environment:
+receives action $A_t$, emits observation $O_{t+1}$, emits scalar reward $R_{t+1}$</li>
+</ul>
 
 t increments at env. step
 
 <h2>History and State</h2>
+
+<ul>
+<li><strong>history</strong></li>
+</ul>
 
 The <strong>history</strong> is the sequence of observations, actions, rewards
 
 $ H_t = O_1, R_1, A_1, ..., A_{t-1}, O_t, R_t $
 
 i.e. all observable variables up to time t.
+
+<ul>
+<li><strong>State</strong></li>
+</ul>
 
 <strong>State</strong> is the information used to determine what happens next. Formally, state is a function of the history: $S_t = f(H_t)$
 
@@ -86,20 +95,120 @@ An <strong>information state</strong> (a.k.a. <strong>Markov state</strong>) con
   A state $S_t$ is Markov if and only if $P[S_{t+1} | St] = P[S_{t+1} | S_1, ..., S_t]$
 </blockquote>
 
-<h3>Fully Observable Environments</h3>
+Once the state is known, the history may be thrown away, i.e. The state is a sufficient statistic of the future.
 
-<h3>Partially Observable Environments</h3>
+e.g. The environment state $S_t^e$ is Markov. The history $H_t$ is Markov
+
+<h2>两种不同的 Environments</h2>
+
+<ul>
+<li>Fully Observable Environments</li>
+</ul>
+
+Agent <strong>directly</strong> observes environment state: $O_t = S_t^a = S_t^e$
+Formally, this is a <strong>Markov decision process</strong> (MDP)
+
+<ul>
+<li>Partially Observable Environments</li>
+</ul>
+
+Agent <strong>indirectly</strong> observes environment. Now $S_t^a \neq S_t^e$, and agent must construct its own state representation $S_t^a$.
+Formally this is a <strong>partially observable Markov decision process</strong> (POMDP)
 
 <h1>Inside An RL Agent</h1>
 
 <h2>Components</h2>
 
-<h3>Policy: agent’s behaviour function</h3>
-
-<h3>Value function: how good is each state and/or action</h3>
-
-<h3>Model: agent’s representation of the environment</h3>
+<ul>
+<li><strong>Policy</strong>: agent’s behaviour function</p></li>
+<li><p><strong>Value function</strong>: how good is each state and/or action</p></li>
+<li><p><strong>Model</strong>: agent’s representation of the environment
+A model predicts what the environment will do next，incluing next state and next (immediate) reward.</p></li>
+</ul>
 
 <h2>RL Agent Taxonomy</h2>
 
+<ul>
+<li>Categorizing RL agents (1)</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+  <th>Taxonomy</th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Value Based</td>
+  <td>No Policy (Implicit)</td>
+  <td>Value Function</td>
+</tr>
+<tr>
+  <td>Policy Based</td>
+  <td>Policy</td>
+  <td>No Value Function</td>
+</tr>
+<tr>
+  <td>Actor Critic</td>
+  <td>Policy</td>
+  <td>Value Function</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>Categorizing RL agents (2)</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+  <th>Taxonomy</th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Model Free</td>
+  <td>Policy and/or Value Function</td>
+  <td>No Model</td>
+</tr>
+<tr>
+  <td>Model Based</td>
+  <td>Policy and/or Value Function</td>
+  <td>Model</td>
+</tr>
+</tbody>
+</table>
+
 <h1>Problems within Reinforcement Learning</h1>
+
+<h2><strong>Learning and Planning</strong></h2>
+
+<ul>
+<li><p><strong>Reinforcement Learning</strong>:
+The environment is initially unknown. The agent interacts with the environment. The agent improves its policy.</p></li>
+<li><p><strong>Planning</strong>:
+A model of the environment is known. The agent performs computations with its model (without any external interaction). The agent improves its policy.</p></li>
+</ul>
+
+<h2>Exploration and Exploitation</h2>
+
+<p><strong>Exploration</strong> finds more information about the environment.
+
+<strong>Exploitation</strong> exploits known information to maximise reward.
+
+It is usually important to explore as well as exploit.
+
+<h2>Prediction and Control</h2>
+
+<ul>
+<li><p><strong>Prediction</strong>: evaluate the future
+Given a policy</p></li>
+<li><p><strong>Control</strong>: optimise the future
+Find the best policy</p></li>
+</ul>
