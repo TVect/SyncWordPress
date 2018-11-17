@@ -33,8 +33,6 @@ Reinforcement learning is based on the <strong>reward hypothesis</strong> : All 
 
 <h2>Agent and Environment</h2>
 
-<img src="https://pic2.zhimg.com/80/v2-2e404ba62b53818c20d1082375903ad1_hd.png" alt="image" />
-
 At each step t:
 
 <ul>
@@ -99,7 +97,7 @@ Once the state is known, the history may be thrown away, i.e. The state is a suf
 
 e.g. The environment state $S_t^e$ is Markov. The history $H_t$ is Markov
 
-<h2>两种不同的 Environments</h2>
+<h3>两种不同的 Environments</h3>
 
 <ul>
 <li>Fully Observable Environments</li>
