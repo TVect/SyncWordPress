@@ -22,10 +22,9 @@ A <strong>Markov process</strong> is a memoryless random process, i.e. a sequenc
 
 <blockquote>
   Definition
-  A <strong>Markov Process</strong> (or <strong>Markov Chain</strong>) is a tuple $&lt;S, P>$
+  A <strong>Markov Process</strong> (or <strong>Markov Chain</strong>) is a tuple $\left \langle S, P \right \rangle$
   1. $S$ is a (finite) set of states
-  2. $P$ is a state transition probability matrix,
-      $P_{ss'} = P [S_{t+1} = s' | S_t = s]$
+  2. $P$ is a state transition probability matrix: $P_{ss'} = P [S_{t+1} = s' | S_t = s]$
 </blockquote>
 
 <h1>Markov Reward Processes</h1>
