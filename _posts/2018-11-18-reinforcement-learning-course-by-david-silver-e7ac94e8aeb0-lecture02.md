@@ -131,4 +131,100 @@ $$
 
 <h1>Markov Decision Processes</h1>
 
+A <strong>Markov decision process (MDP)</strong> is a Markov reward process with decisions. It is an environment in which all states are Markov.
+
+<h2>Definition of MDP</h2>
+
+<blockquote>
+  Definition
+  A <strong>Markov Decision Process</strong> is a tuple $\left \langle S, {\color{Red} A}, P, R, \gamma \right \rangle$
+  1. $S$ is a (finite) set of states
+  2. <font color="red"> $A$ is a (finite) set of actions </font>
+  3. $P$ is a state transition probability matrix: $P_{ss'}^{a} = P [S_{t+1} = s' | S_t = s, A_t=a]$
+  4.  $R$ is a reward function, $R_s^a = E [R_{t+1} | S_t = s, A_t=a]$
+  5. $\gamma$ is a discount factor, $\gamma \in [0, 1]$
+</blockquote>
+
+<h2>Policy</h2>
+
+<blockquote>
+  Definition
+  A <strong>policy</strong> $\pi$ is a distribution over actions given states,
+  
+  $$ \pi(a|s) = P [A_t = a | S_t = s]$$
+</blockquote>
+
+<ul>
+<li>MDP 与 MP, MRP 的关系</li>
+</ul>
+
+Given an MDP $M = \left \langle S, A, P, R, \gamma \right \rangle$ and a policy $\pi$.
+The state sequence $S1, S2, ...$ is a Markov process $M = \left \langle S, P^\pi \right \rangle$
+The state and reward sequence $S1, R2, S2, ...$ is a Markov reward process $\left \langle S, P^\pi, R^\pi, \gamma \right \rangle$
+where
+
+$$ P_{s,s'}^\pi = \sum_{a \in A} \pi(a|s)P_{ss'}^a$$
+
+$$ R_{s}^\pi = \sum_{a \in A} \pi(a|s)R_{s}^a$$
+
+<h2>Value Function</h2>
+
+<blockquote>
+  Definition
+  The <strong>state-value function</strong> $v_\pi(s)$ of an MDP is the expected return starting from state s, and then following policy $\pi$
+  
+  $$v_\pi(s) = E_{\pi} [G_t | S_t = s]$$
+  
+  The <strong>action-value function</strong> $q_\pi(s, a)$ is the expected return starting from state s, taking action a, and then following policy $\pi$
+  
+  $$q_{\pi}(s, a) = E_{\pi} [G_t | S_t = s, A_t = a]$$
+</blockquote>
+
+<h3>Bellman Expectation Equation</h3>
+
+The state-value function can again be decomposed into immediate reward plus discounted value of successor state,
+
+$$v_{\pi}(s) = E_{\pi} [R_{t+1} + \gamma v_{\pi}(S_{t+1}) | S_t = s]$$
+
+The action-value function can similarly be decomposed,
+
+$$q_{\pi}(s, a) = E_{\pi} [R_{t+1} + \gamma q_{\pi}(S_{t+1}, A_{t+1}) | S_t = s, A_t = a]$$
+
+进一步有:
+
+$$
+\begin{aligned}
+v_{\pi}(s) &amp;= \sum_{a \in A} \pi(a|s)q_{\pi}(s,a) &#92;
+q_{\pi}(s, a) &amp;= R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a v_{\pi}(s') &#92;
+v_{\pi}(s) &amp;= \sum_{a \in A} \pi(a|s) (R_s^a + \sum_{s' \in S} P_{ss'}^a v_{\pi}(s')) &#92;
+q_{\pi}(s, a) &amp;= R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a \sum_{a' \in A} \pi(a'|s')q_{\pi}(s',a')
+\end{aligned}
+$$
+
+<ul>
+<li><strong>Bellman Expectation Equation (Matrix Form)</strong></li>
+</ul>
+
+The Bellman expectation equation can be expressed concisely using the induced MRP,
+
+$$v_{\pi} = R_{\pi} + \gamma P^{\pi}v_{\pi}$$
+
+with direct solution
+
+$$v_{\pi} = (I − \gamma P^{\pi})^{−1} R^{\pi}$$
+
+<h3>Optimal Value Function</h3>
+
+<blockquote>
+  Definition
+  The <strong>optimal state-value function</strong> $v_∗(s)$ is the maximum value function over all policies: $v_∗(s) = max_{\pi} v_{\pi}(s) $.
+  The <strong>optimal action-value function</strong> $q_∗(s, a)$ is the maximum action-value function over all policies: $q_∗(s, a) = max_\pi q_{\pi}(s, a)$
+</blockquote>
+
+<h3>Optimal Policy</h3>
+
+Define a partial ordering over policies:
+
+$$ \pi ≥ \pi_0 \quad if  \quad v_{\pi}(s) ≥ v_{\pi 0}(s) \ \forall s$$
+
 <h1>Extensions to MDPs</h1>
