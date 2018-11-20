@@ -275,3 +275,5 @@ Bellman Optimality Equation is non-linear, there is no closed form solution (in 
 Many iterative solution methods can be used to solve the Bellman Optimality Equation: Value Iteration, Policy Iteration, Q-learning, Sarsa ...
 
 <h1>Extensions to MDPs</h1>
+
+<strong>参考资料</strong>：Reinforcement Learning Course by David Silver
