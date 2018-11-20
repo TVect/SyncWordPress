@@ -145,7 +145,11 @@ A <strong>Markov decision process (MDP)</strong> is a Markov reward process with
   5. $\gamma$ is a discount factor, $\gamma \in [0, 1]$
 </blockquote>
 
-<h2>Policy</h2>
+<h2>Policy, Value Function &amp; Bellman Expectation Equation</h2>
+
+<ul>
+<li><strong>Policy</strong></li>
+</ul>
 
 <blockquote>
   Definition
@@ -154,9 +158,7 @@ A <strong>Markov decision process (MDP)</strong> is a Markov reward process with
   $$ \pi(a|s) = P [A_t = a | S_t = s]$$
 </blockquote>
 
-<ul>
-<li>MDP 与 MP, MRP 的关系</li>
-</ul>
+<strong>MDP 与 MP, MRP 的关系</strong>:
 
 Given an MDP $M = \left \langle S, A, P, R, \gamma \right \rangle$ and a policy $\pi$.
 The state sequence $S1, S2, ...$ is a Markov process $M = \left \langle S, P^\pi \right \rangle$
@@ -167,7 +169,9 @@ $$ P_{s,s'}^\pi = \sum_{a \in A} \pi(a|s)P_{ss'}^a$$
 
 $$ R_{s}^\pi = \sum_{a \in A} \pi(a|s)R_{s}^a$$
 
-<h2>Value Function</h2>
+<ul>
+<li><strong>Value Function</strong></li>
+</ul>
 
 <blockquote>
   Definition
@@ -180,7 +184,9 @@ $$ R_{s}^\pi = \sum_{a \in A} \pi(a|s)R_{s}^a$$
   $$q_{\pi}(s, a) = E_{\pi} [G_t | S_t = s, A_t = a]$$
 </blockquote>
 
-<h3>Bellman Expectation Equation</h3>
+<ul>
+<li><strong>Bellman Expectation Equation</strong></li>
+</ul>
 
 The state-value function can again be decomposed into immediate reward plus discounted value of successor state,
 
@@ -213,18 +219,59 @@ with direct solution
 
 $$v_{\pi} = (I − \gamma P^{\pi})^{−1} R^{\pi}$$
 
-<h3>Optimal Value Function</h3>
+<h2>Optimal Policy, Optimal Value Function &amp; Bellman Optimality Equation</h2>
+
+<ul>
+<li><strong>Optimal Value Function</strong></li>
+</ul>
 
 <blockquote>
   Definition
-  The <strong>optimal state-value function</strong> $v_∗(s)$ is the maximum value function over all policies: $v_∗(s) = max_{\pi} v_{\pi}(s) $.
-  The <strong>optimal action-value function</strong> $q_∗(s, a)$ is the maximum action-value function over all policies: $q_∗(s, a) = max_\pi q_{\pi}(s, a)$
+  The <strong>optimal state-value function</strong> $v_∗(s)$ is the maximum value function over all policies: $v_∗(s) = \max_{\pi} v_{\pi}(s) $.
+  The <strong>optimal action-value function</strong> $q_∗(s, a)$ is the maximum action-value function over all policies: $q_∗(s, a) = \max_\pi q_{\pi}(s, a)$
 </blockquote>
 
-<h3>Optimal Policy</h3>
+<ul>
+<li><strong>Optimal Policy</strong></li>
+</ul>
 
 Define a partial ordering over policies:
 
-$$ \pi ≥ \pi_0 \quad if  \quad v_{\pi}(s) ≥ v_{\pi 0}(s) \ \forall s$$
+$$ \pi ≥ \pi_0 \quad if  \quad v_{\pi}(s) ≥ v_{\pi 0}(s) \quad  \forall s$$
+
+<strong>Optimal Policy, Optimal Value Function 存在性定理</strong>:
+
+<blockquote>
+  Theorem
+  For any Markov Decision Process
+  1. There exists an optimal policy π∗ that is better than or equal to all other policies, $\pi_∗ ≥ \pi \ \ \forall \pi $
+  2. All optimal policies achieve the optimal value function, $v_{\pi^∗}(s) = v_∗(s)$
+  3. All optimal policies achieve the optimal action-value function, $q_{\pi^∗}(s, a) = q_∗(s, a)$
+</blockquote>
+
+Moreover, there is always a deterministic optimal policy for any MDP. If we know $q_∗(s, a)$, we immediately have the deterministic optimal policy by maximising over $q_∗(s, a)$.
+
+<ul>
+<li><strong>Bellman Optimality Equation</strong></li>
+</ul>
+
+The optimal value functions are recursively related by the <strong>Bellman optimality equations</strong>:
+
+$$
+\begin{aligned}
+v_∗(s) &amp;= \max_a q_∗(s, a) &#92;
+q_∗(s, a) &amp;= R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a v_∗(s') &#92;
+v_∗(s) &amp;= \max_a R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a v_∗(s') &#92;
+q_∗(s, a) &amp;= R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a \max_{a'}q_∗(s', a')
+\end{aligned}
+$$
+
+<ul>
+<li><strong>Solving the Bellman Optimality Equation</strong></li>
+</ul>
+
+Bellman Optimality Equation is non-linear, there is no closed form solution (in general).
+
+Many iterative solution methods can be used to solve the Bellman Optimality Equation: Value Iteration, Policy Iteration, Q-learning, Sarsa ...
 
 <h1>Extensions to MDPs</h1>
