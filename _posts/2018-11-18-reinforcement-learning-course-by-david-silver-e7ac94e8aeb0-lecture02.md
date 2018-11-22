@@ -1,6 +1,6 @@
 ---
 ID: 883
-post_title: 'Reinforcement Learning Course by David Silver 笔记 &#8211; Lecture02'
+post_title: RL Course by D.Silver 笔记 02 – MDP
 author: Chin
 post_excerpt: ""
 layout: post
