@@ -1,8 +1,6 @@
 ---
 ID: 910
-post_title: >
-  Reinforcement Learning Course by David
-  Silver 笔记 – Lecture03
+post_title: 'RL Course by D.Silver 笔记 03 &#8211; Dynamic Programming'
 author: Chin
 post_excerpt: ""
 layout: post
@@ -15,6 +13,27 @@ post_date: 2018-11-21 23:29:27
 <!--more-->
 
 <h1>Introduction</h1>
+
+Dynamic Programming is a very general solution method for problems which have two properties:
+1. Optimal substructure
+2. Overlapping subproblems
+
+Markov decision processes satisfy both properties：
+1. Bellman equation gives recursive decomposition
+2. Value function stores and reuses solutions
+
+<strong>Dynamic Programming 在 MDP 中应用</strong>
+
+Dynamic programming assumes full knowledge of the MDP. It is used for planning in an MDP.
+
+<ul>
+<li><p>For prediction:
+Input: MDP $\left \langle S, A, P, R, \gamma \right \rangle$ and policy $\pi$, or MRP $\left \langle S, P^{\pi}, R^{\pi}, \gamma \right \rangle$
+Output: value function $v_{\pi}$</p></li>
+<li><p>For control:
+Input: MDP $\left \langle S, A, P, R, \gamma \right \rangle$
+Output: optimal value function $v_* $ and optimal policy $\pi_*$</p></li>
+</ul>
 
 <h1>Policy Evaluation</h1>
 
