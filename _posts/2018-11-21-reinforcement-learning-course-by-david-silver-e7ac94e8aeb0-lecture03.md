@@ -27,7 +27,7 @@ Markov decision processes satisfy both properties：
 Dynamic programming assumes full knowledge of the MDP. It is used for planning in an MDP.
 
 <ul>
-<li><p>For prediction:
+<li>For prediction:
 Input: MDP $\left \langle S, A, P, R, \gamma \right \rangle$ and policy $\pi$, or MRP $\left \langle S, P^{\pi}, R^{\pi}, \gamma \right \rangle$
 Output: value function $v_{\pi}$</p></li>
 <li><p>For control:
@@ -36,6 +36,17 @@ Output: optimal value function $v_* $ and optimal policy $\pi_*$</p></li>
 </ul>
 
 <h1>Policy Evaluation</h1>
+
+<p><strong>Problem</strong>: evaluate a given policy $\pi$
+
+<strong>Solution</strong>: iterative application of Bellman expectation backup
+
+<ul>
+<li><strong>synchronous backups</strong>
+At each iteration k + 1
+For all states $s \in S$
+Update $v_{k+1}(s)$ from $v_k(s')$, where $s'$ is a successor state of $s$.</li>
+</ul>
 
 <h1>Policy Iteration</h1>
 
