@@ -50,6 +50,59 @@ Update $v_{k+1}(s)$ from $v_k(s')$, where $s'$ is a successor state of $s$.</li>
 
 <h1>Policy Iteration</h1>
 
+<strong>基本流程</strong>
+
+<blockquote>
+  Evaluate the policy $\pi$,
+  
+  $$v_\pi(s) = E[R_{t+1} + \gamma R_{t+2} + ... | S_t=s]$$
+  
+  Improve the policy by acting greedily with respect to $v_\pi$
+  
+  $$ {\pi}^{\prime} = greedy(v_{\pi})$$
+</blockquote>
+
+this process of policy iteration always converges to $\pi^{*}$.
+
+<strong>Policy Improvement 有效性</strong>
+
+<blockquote>
+  Consider a deterministic policy, $a = \pi(s)$, We can improve the policy by acting greedily: ${\pi}^{\prime}(s) = \mathop{\arg \max}<em>{a \in A} q</em>{\pi}(s, a)$
+</blockquote>
+
+<ul>
+<li>证明</li>
+</ul>
+
+$$
+q_{\pi}(s, {\pi}^{\prime}(s)) = \mathop{\max}<em>{a \in A} q</em>{\pi}(s,a) \geq q_{\pi}(s, \pi(s)) = v_{\pi}(s)
+$$
+
+接下来, 重复上面的不等式, 证明 $v_{{\pi}^{\prime}}(s) \geq v_\pi(s)$.
+
+$$
+\begin{aligned}
+v_{\pi}(s) &amp; \leq q_{\pi}(s, {\pi}^{\prime}(s)) = E_{{\pi}^{\prime}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) | S_t=s] &#92;
+&amp; \leq E_{{\pi}^{\prime}}[R_{t+1} + \gamma q_{\pi}(S_{t+1}, {\pi}^{\prime}(S_{t+1})) | S_t=s] = E_{{\pi}^{\prime}}[R_{t+1} + \gamma R_{t+2} + \gamma^2 v_{\pi}(S_{t+2})| S_t=s] &#92;
+&amp; \leq E_{{\pi}^{\prime}}[R_{t+1} + \gamma R_{t+2} + \gamma^{2} q_{\pi}(S_{t+2}, {\pi}^{\prime}(S_{t+2})) | S_t=s] &#92;
+&amp; \leq ... &#92;
+&amp; \leq E_{{\pi}^{\prime}} [R_{t+1} + \gamma R_{t+2} + \gamma^{2} R_{t+3} + ... | S_t=s] = v_{\pi}(s)
+\end{aligned}
+$$
+
+在 policy improvement 终止的时候有:
+
+$$
+q_{\pi}(s, {\pi}^{\prime}(s)) = \mathop{\max}<em>{a \in A} q</em>{\pi}(s,a) = q_{\pi}(s, \pi(s)) = v_{\pi}(s)
+$$
+
+此时, Bellman optimality equation $v_{\pi}(s)=\mathop{\max}<em>{a \in A} q</em>{\pi}(s,a)$ 得到满足.
+因此, $v_{\pi}(s) = v_*(s) \quad \forall s \in S$, 即有 $\pi$ 是 an optimal policy.
+
+<strong>Generalised Policy Iteration</strong>
+
+<img src="https://i.loli.net/2018/11/25/5bfa58e2e1b45.png" width="600" align=center />
+
 <h1>Value Iteration</h1>
 
 <h1>Extensions to Dynamic Programming</h1>
