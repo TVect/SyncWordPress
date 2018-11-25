@@ -105,6 +105,105 @@ $$
 
 <h1>Value Iteration</h1>
 
+<h2>Value Iteration in MDPs</h2>
+
+<strong>Principle of Optimality</strong>
+
+Any optimal policy can be subdivided into two components:
+
+<ul>
+<li>An optimal first action $A_*$</li>
+<li>Followed by an optimal policy from successor state $S^{\prime}$</li>
+</ul>
+
+<blockquote>
+  Theorem (<strong>Principle of Optimality</strong>)
+  A policy $\pi(a|s)$ achieves the optimal value from state $s$, $v_\pi(s) = v_\ast(s)$ ,
+  if and only if, for any state $s^{\prime}$ reachable from $s$, $\pi$ achieves the optimal value from state $s^{\prime}$, $v_\pi(s^{\prime}) = v_\ast(s^{\prime})$
+</blockquote>
+
+<strong>Deterministic Value Iteration</strong>
+
+If we know the solution to subproblems $v_\ast(s^{\prime})$, then solution $v_\ast(s)$ can be found by one-step lookahead
+
+$$v_\ast(s) \leftarrow \max_{a \in A} R_s^a + \gamma \sum_{s^{\prime} \in S} P_{ss^{\prime}}^a v_\ast(s^{\prime}) $$
+
+<strong>Value Iteration</strong>
+
+<strong>Problem</strong>: find optimal policy $\pi$
+<strong>Solution</strong>: iterative application of Bellman optimality backup
+
+<ul>
+<li><strong>synchronous backups</strong>
+At each iteration k + 1
+For all states $ s \in S $
+Update $v_{k+1}(s)$ from $v_k(s^{\prime})$</li>
+</ul>
+
+Unlike policy iteration, there is no explicit policy. And intermediate value functions may not correspond to any policy.
+
+<h2>Summary of DP Algorithms</h2>
+
+<strong>Synchronous Dynamic Programming Algorithms</strong>
+<table>
+<thead>
+<tr>
+  <th>Problem</th>
+  <th>Bellman Equation</th>
+  <th>Algorithm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Prediction</td>
+  <td>Bellman Expectation Equation</td>
+  <td>Iterative Policy Evaluation</td>
+</tr>
+<tr>
+  <td>Control</td>
+  <td>Bellman Expectation Equation + Greedy Policy Improvement</td>
+  <td>Policy Iteration</td>
+</tr>
+<tr>
+  <td>Control</td>
+  <td>Bellman Optimality Equation</td>
+  <td>Value Iteration</td>
+</tr>
+</tbody>
+</table>
+
 <h1>Extensions to Dynamic Programming</h1>
+
+<h2>Asynchronous Dynamic Programming</h2>
+
+<ul>
+<li>Asynchronous DP backs up states individually, in any order.</li>
+<li>For each selected state, apply the appropriate backup can significantly reduce computation.</li>
+<li>Guaranteed to converge if all states continue to be selected</li>
+</ul>
+
+asynchronous dynamic programming 有以下几种简单的做法:
+
+<h3>In-place dynamic programming</h3>
+
+In-place value iteration only stores one copy of value function.
+
+$$v(s) \leftarrow \max_{a \in A} (R_s^a + \gamma \sum_{s^{\prime} \in S} P_{ss^\prime}^a v(s^\prime)) $$
+
+<h3>Prioritised sweeping</h3>
+
+使用 Bellman error 的大小来指导 state 更新选择的顺序, 如可以使用如下的 Bellman error:
+
+$$|\max_{a \in A} (R_s^a + \gamma \sum_{s^{\prime} \in S} P_{ss^\prime}^a v(s^\prime)) -v(s)|$$
+
+<h3>Real-time dynamic programming</h3>
+
+使用 Use agent’s experience 来指导 state 更新选择的顺序.
+
+观察到一个 experience $S_t, A_t, R_{t+1}$ 之后, 就对 $v(S_t)$ 做更新.
+
+<h2>Full-width and sample backups</h2>
+
+<h2>Approximate Dynamic Programming</h2>
 
 <h1>Contraction Mapping</h1>
