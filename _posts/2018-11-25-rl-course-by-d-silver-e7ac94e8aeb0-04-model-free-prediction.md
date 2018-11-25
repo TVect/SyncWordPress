@@ -109,12 +109,55 @@ Usually more effective in non-Markov environments</p></li>
 
 Define the n-step return
 
-$$G_tR_{t+1} + \gamma R_{t+2} + ... + \gamma^{n−1}R_{t+n} + \gamma^n V(S_{t+n})$$
+$$G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{n−1}R_{t+n} + \gamma^n V(S_{t+n})$$
 
 n-step temporal-difference learning:
 
-$$V(S_t) \leftarrow V(S_t) + \alpha (G_t^n − V(S_t))$$
+$$V(S_t) \leftarrow V(S_t) + \alpha (G_t^{(n)} − V(S_t))$$
+
+TD(λ) 尝试将 n-step return 的加权平均值作为 TD-target, 以有效的利用所有时间步的信息. 下面是 TD(λ) 的 Forward View 和 Backward View.
 
 <h2>Forward View of TD(λ)</h2>
 
-The $\lambda$-return $G_t^\lambda$ combines all n-step returns $G_t^n$
+The $\lambda$-return $G_t^\lambda$ combines all n-step returns $G_t^{(n)}$:
+
+$$G_t^\lambda = (1-\lambda) \sum_{n=1}^{\infty} \lambda^{n-1} G_t^{(n)}$$
+
+Update value function:
+
+$$ V(S_t) \leftarrow V(S_t) + \alpha (G_t^\lambda − V(S_t)) $$
+
+<strong>Conclusion</strong>
+
+Forward-view looks into the future to compute G_t^\lambda.
+
+Like MC, it can only be computed from complete episodes.
+
+<h2>Backward View of TD(λ)</h2>
+
+<strong>Intution of Eligibility Traces</strong>
+
+<ul>
+<li>Frequency heuristic: assign credit to most frequent states</p></li>
+<li><p>Recency heuristic: assign credit to most recent states</p></li>
+</ul>
+
+<p>Eligibility traces combine both heuristics：
+
+$$
+\begin{aligned}
+E_0(s) &amp;= 0 &#92;
+E_t(s) &amp;= \gamma \lambda E_{t−1}(s) + 1(S_t = s)
+\end{aligned}
+$$
+
+<strong>Backward View TD(λ)</strong>
+- Keep an eligibility trace for every state $s$
+- Update value $V(s)$ for every state $s$, in proportion to TD-error $\delta_t$ and eligibility trace $E_t(s)$
+
+$$
+\begin{aligned}
+\delta_t &amp; = R_{t+1} + \gamma V(S_{t+1}) − V(S_t) &#92;
+V(s) &amp; \leftarrow V(s) + \alpha \delta_t E_t(s)
+\end{aligned}
+$$
