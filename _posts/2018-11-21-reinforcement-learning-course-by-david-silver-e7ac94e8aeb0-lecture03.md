@@ -204,6 +204,27 @@ $$|\max_{a \in A} (R_s^a + \gamma \sum_{s^{\prime} \in S} P_{ss^\prime}^a v(s^\p
 
 <h2>Full-width and sample backups</h2>
 
+...
+
 <h2>Approximate Dynamic Programming</h2>
 
+...
+
 <h1>Contraction Mapping</h1>
+
+定义 算子 $T$ 是 满足 $\gamma-constraction$ 的, 如果有: $|T(u) - T(v)|<em>{\infty } \leq \gamma |u-v|</em>{\infty}$ .
+
+<blockquote>
+  Theorem (Contraction Mapping Theorem)
+  For any metric space V that is complete (i.e. closed) under an operator $T(v)$, where $T$ is a $\gamma-contraction$,
+  then, $T$ converges to a unique fixed point at a linear convergence rate of $\gamma$.
+</blockquote>
+
+现在, 定义 V 为由 value functions 构成的空间(或者是 $|S|$ 维的向量空间), 在其上分别定义 Bellman expectation backup operator 和 Bellman optimality backup operator, 具体如下:
+
+<ul>
+<li>定义 Bellman expectation backup operator $T^\pi(v) = R^\pi + \gamma P^\pi v $, 其满足 $\gamma-constraction$ 条件, 根据 Constraction Mapping Theorem, 容易得到 Policy Evaluation 和 Policy Iteration 的收敛性.</p></li>
+<li><p>定义 Bellman optimality backup operator $T^\ast(v) = \max_{a \in A} R^a + \gamma P^a v $, 其满足 $\gamma-constraction$ 条件, 根据 Constraction Mapping Theorem, 容易得到 Value Iteration 的收敛性.</p></li>
+</ul>
+
+<p><strong>参考资料</strong>: Reinforcement Learning Course by David Silver
