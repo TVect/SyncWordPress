@@ -161,3 +161,35 @@ $$
 V(s) &amp; \leftarrow V(s) + \alpha \delta_t E_t(s)
 \end{aligned}
 $$
+
+<strong>TD(λ) and TD(0)</strong>
+When $\lambda = 0$, only current state is updated:
+
+$$
+\begin{aligned}
+E_t(s) &amp;= 1(S_t = s) &#92;
+V(s) &amp; \leftarrow V(s) + \alpha \delta_t E_t(s)
+\end{aligned}
+$$
+
+This is exactly equivalent to TD(0) update: $V(S_t) \leftarrow V(S_t) + \alpha \delta_t$.
+
+<strong>TD(λ) and MC</strong>
+When $\lambda = 1$, over the course of an episode, total update for TD(1) is the same as total update for MC.
+
+<blockquote>
+  Theorem
+  The sum of offline updates is identical for forward-view and backward-view TD(λ)
+  
+  $$ \sum_{t=1}^T \alpha \delta_t E_t(s) = \sum_{t=1}^T \alpha (G_t^\lambda - V(S_t)) 1(S_t=s)$$
+</blockquote>
+
+<ul>
+<li>TD(1) is roughly equivalent to every-visit Monte-Carlo</li>
+<li>Error is accumulated online, step-by-step</li>
+<li>If value function is only updated offline at end of episode, then total update is exactly the same as MC</li>
+</ul>
+
+Forward view provides theory, Backward view provides mechanism: update online, every step, from incomplete sequences.
+
+<strong>参考资料</strong>: Reinforcement Learning Course by David Silver
