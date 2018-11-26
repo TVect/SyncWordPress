@@ -1,7 +1,7 @@
 ---
 ID: 941
 post_title: >
-  RL Course by D.Silver 笔记 04 –
+  RL Course by D.Silver 笔记 05 –
   Model-Free Control
 author: Chin
 post_excerpt: ""
