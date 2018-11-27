@@ -84,6 +84,83 @@ $$
 
 <h1>On-Policy Temporal-Difference Learning</h1>
 
+<h2>Sarsa</h2>
+
+<strong>Sarsa Algorithm for On-Policy Control</strong>:
+
+Every time-step:
+
+<ul>
+<li><strong>Policy evaluation</strong> Sarsa, $Q \approx  q_\pi$</li>
+<li><strong>Policy improvement</strong> $\epsilon$-greedy policy improvement</li>
+</ul>
+
+<strong>Convergence of Sarsa</strong>:
+
+<blockquote>
+  Theorem
+  Sarsa converges to the optimal action-value function, $Q(s, a) \rightarrow q_\ast(s, a)$, under the following conditions:
+  
+  <ul>
+  <li>GLIE sequence of policies $π_t(a|s)$</li>
+  <li>Robbins-Monro sequence of step-sizes $\alpha_t$
+  $ \sum_{t=1}^\infty \alpha_t = \infty $
+  $ \sum_{t=1}^\infty \alpha_t^2 &lt; \infty $</li>
+  </ul>
+</blockquote>
+
+<strong>n-Step Sarsa</strong>:
+
+<ul>
+<li>Define the n-step Q-return:</li>
+</ul>
+
+$$q_t^{(n)} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{n−1}R_{t+n} + \gamma^{n}Q(S_{t+n})$$
+
+<ul>
+<li>n-step Sarsa updates $Q(s, a)$ towards the n-step Q-return:</li>
+</ul>
+
+$$Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha (q_t^{(n)} − Q(S_t, A_t))$$
+
+<h2>Sarsa(λ)</h2>
+
+尝试对 1-step return, 2-step return, ..., n-step return, ... 做平均.
+
+<h3>Forward View Sarsa(λ)</h3>
+
+更新公式为: $ Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha (q_t^\lambda − Q(S_t, A_t))$
+
+其中, $q_t^\lambda$ 各个时间步 return 的加权平均: $q_t^\lambda = (1 − \lambda) \sum_{n=1}^\infty \lambda^{n-1} q_t^{n}$.
+
+<h3>Backward View Sarsa(λ)</h3>
+
+<ul>
+<li>Sarsa(λ) has one eligibility trace for each state-action pair:</li>
+</ul>
+
+$$
+\begin{aligned}
+E_0(s, a) &amp;= 0 &#92;
+E_t(s, a) &amp;= \gamma \lambda E_{t−1}(s, a) + 1(S_t=s, A_t=a)
+\end{aligned}
+$$
+
+<ul>
+<li>$Q(s, a)$ is updated for every state s and action a, in proportion to TD-error $\delta_t$ and eligibility trace $E_t(s, a)$:</li>
+</ul>
+
+$$
+\begin{aligned}
+\delta_t &amp;= R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) − Q(S_t, A_t) &#92;
+Q(s, a) &amp; \leftarrow Q(s, a) + \alpha \delta_t E_t(s, a)
+\end{aligned}
+$$
+
+<strong>Sarsa(λ) Algorithm 伪代码</strong>:
+
+<img src="https://i.loli.net/2018/11/27/5bfd4b1e85861.png" width="600" align=center />
+
 <h1>Off-Policy Learning</h1>
 
 <h1>Summary</h1>
