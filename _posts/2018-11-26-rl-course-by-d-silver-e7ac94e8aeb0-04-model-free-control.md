@@ -176,4 +176,48 @@ Why is this important?
 
 <h2>Importance Sampling</h2>
 
+现在要关于 P(X) 求期望, 但很难直接对 P(X)进行采样, 可以通过引入一个 proposal distribution Q(X), 转化为关于 Q(X) 求期望的问题.
+
+$$
+E_{X \sim P} [f(X)] = \sum P(X) f(X) = \sum Q(X) \frac {P(X)} {Q(X)} f(X) = E_{X \sim Q} [\frac {P(X)}{Q(X)}f(X)]
+$$
+
+<strong>Importance Sampling for Off-Policy Monte-Carlo</strong>
+
+<ul>
+<li>基本想法:
+Use returns generated from $u$ to evaluate $\pi$, weight return $G_t$ according to similarity between policies.</li>
+</ul>
+
+$$
+G_t^{\pi/u} = \frac {\pi(A_t|S_t)} {u(A_t|S_t)} \frac {\pi(A_{t+1}|S_{t+1})} {u(A_{t+1}|S_{t+1})} ... \frac {\pi(A_T|S_T)} {u(A_T|S_T)} G_t
+$$
+
+$$ V(S_t) \leftarrow V(S_t) + \alpha (G_t^{\pi/u} − V(S_t)) $$
+
+<ul>
+<li>备注:
+Cannot use if $u$ is zero when $\pi$ is non-zero.
+Importance sampling can dramatically increase variance.</li>
+</ul>
+
+<strong>Importance Sampling for Off-Policy TD</strong>
+
+<ul>
+<li>基本想法:
+Use TD targets generated from $u$ to evaluate $\pi$, Weight TD target by importance sampling.</li>
+</ul>
+
+$$
+V(S_t) \leftarrow V(S_t) + \alpha (\frac {\pi(A_t|S_t)}{u(A_t|S_t)} (R_{t+1} + \gamma V(S_{t+1})) − V(S_t))
+$$
+
+<ul>
+<li>备注:
+Much lower variance than Monte-Carlo importance sampling.
+Policies only need to be similar over a single step.</li>
+</ul>
+
+<h2>Q-Learning</h2>
+
 <h1>Summary</h1>
