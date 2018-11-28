@@ -163,4 +163,17 @@ $$
 
 <h1>Off-Policy Learning</h1>
 
+Evaluate target policy $\pi(a|s)$ to compute $v_\pi(s)$ or $q_\pi(s, a)$, While following behaviour policy $u(a|s)$.
+
+Why is this important?
+
+<ul>
+<li>Learn from observing humans or other agents</li>
+<li>Re-use experience generated from old policies</li>
+<li>Learn about optimal policy while following exploratory policy</li>
+<li>Learn about multiple policies while following one policy</li>
+</ul>
+
+<h2>Importance Sampling</h2>
+
 <h1>Summary</h1>
