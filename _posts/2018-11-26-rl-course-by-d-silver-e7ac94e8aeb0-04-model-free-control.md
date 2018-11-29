@@ -220,4 +220,55 @@ Policies only need to be similar over a single step.</li>
 
 <h2>Q-Learning</h2>
 
+consider off-policy learning of action-values $Q(s, a)$ without importance sampling
+
+<ul>
+<li>Next action is chosen using behaviour policy $A_{t+1} \sim u(·|S_t)$</li>
+<li>But we consider alternative successor action $A_0 \sim \pi(·|S_t)$</li>
+<li>And update $Q(S_t, A_t)$ towards value of alternative action:</li>
+</ul>
+
+$$Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha (R_{t+1} + \gamma Q(S_{t+1}, A^\prime) − Q(S_t, A_t))$$
+
+We now allow both behaviour and target policies to improve.
+
+<ul>
+<li>The target policy $\pi$ is greedy w.r.t. $Q(s, a)$: $\pi(S_{t+1}) = \arg \max_{a^\prime} Q(S_{t+1}, a^\prime)$</p></li>
+<li><p>The behaviour policy $u$ is e.g. $\epsilon$-greedy w.r.t. $Q(s, a)$.</p></li>
+<li><p>The Q-learning target then simplifies:</p></li>
+</ul>
+
+<p>$$ 
+\begin{aligned}
+R_{t+1} + \gamma Q(S_{t+1}, A^\prime) &amp;=  R_{t+1} + \gamma Q(S_{t+1},\arg \max_{a^\prime} Q(S_{t+1}, a^\prime)) &#92;
+&amp; = R_{t+1} + \max_{a^\prime} \gamma Q(S_{t+1}, a^\prime)
+\end{aligned}
+$$
+
+<ul>
+<li>此时，更新公式为:</li>
+</ul>
+
+$$Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha (R_{t+1} + \gamma \max_{a^\prime} Q(S_{t+1}, a^\prime) − Q(S_t, A_t))$$
+
+<strong>Q-learning 伪代码</strong>:
+
+<img src="https://i.loli.net/2018/11/29/5c00002e0d6f9.png" width="600" align=center />
+
+<blockquote>
+  Theorem
+  Q-learning control converges to the optimal action-value function, $Q(s, a) \rightarrow q_\ast(s, a)$
+</blockquote>
+
 <h1>Summary</h1>
+
+<ul>
+<li><strong>backup diagram</strong>
+<img src="https://i.loli.net/2018/11/29/5bfffd951798b.png" width="600" align=center /></p></li>
+<li><p><strong>update equation</strong>
+<img src="https://i.loli.net/2018/11/29/5bfffdf94fc17.png" width="600" align=center /></p></li>
+</ul>
+
+<hr />
+
+<p><strong>参考资料</strong>: Reinforcement Learning Course by David Silver
