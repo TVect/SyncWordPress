@@ -1,10 +1,10 @@
 ---
-ID: 822
+ID: 81
 post_title: 'StarSpace &#8211; Embed All The Things 阅读笔记'
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/822
+permalink: https://blog.tvect.cn/?p=81
 published: true
 post_date: 2018-10-25 22:28:20
 ---

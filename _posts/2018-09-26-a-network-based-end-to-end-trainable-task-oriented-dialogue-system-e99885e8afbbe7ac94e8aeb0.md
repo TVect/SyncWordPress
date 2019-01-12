@@ -1,13 +1,13 @@
 ---
-ID: 753
+ID: 69
 post_title: >
   A Network-based End-to-End Trainable
   Task-oriented Dialogue System
   阅读笔记
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: 'http://blog.tvect.cc/2018/09/26/a-network-based-end-to-end-trainable-task-oriented-dialogue-system-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
+permalink: https://blog.tvect.cn/?p=69
 published: true
 post_date: 2018-09-26 17:54:19
 ---

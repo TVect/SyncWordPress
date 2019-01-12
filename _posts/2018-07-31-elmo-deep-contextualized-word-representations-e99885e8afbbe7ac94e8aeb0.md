@@ -1,10 +1,10 @@
 ---
-ID: 608
+ID: 55
 post_title: 'ELMo: Deep contextualized word representations 阅读笔记'
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: 'http://blog.tvect.cc/2018/07/31/elmo-deep-contextualized-word-representations-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
+permalink: https://blog.tvect.cn/?p=55
 published: true
 post_date: 2018-07-31 22:28:14
 ---

@@ -1,11 +1,10 @@
 ---
-ID: 322
+ID: 39
 post_title: Memory Network notes
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: >
-  http://blog.tvect.cc/2018/06/12/memory-network-notes/
+permalink: https://blog.tvect.cn/?p=39
 published: true
 post_date: 2018-06-12 17:24:11
 ---
@@ -48,19 +47,19 @@ basic model的 I 就是一个简单的embedding lookup操作，也就是将原�
 
 主要的工作在O和R两个模块进行。 O模块根据输入的问题向量在所有的记忆中选择出topk相关的记忆，具体选择方式为，先选记忆中最相关的memory, 再根据选出的记忆继续选择一个最相关的 memory:
 
-$$ o_{1} = O_{1}(x, m) = argmax \ S_{o}(x, m_{i})$$
-$$o_{2} = O_{2}(x, m) = argmax \ S_{o}([x, m_{o_{1}}], m_{i})$$
+$$ o_{1} = O_{1}(x, m) = argmax  S_{o}(x, m_{i})$$
+$$o_{2} = O_{2}(x, m) = argmax  S_{o}([x, m_{o_{1}}], m_{i})$$
 
 选择出最相关的 top k 个memory slot 之后。将其作为R模块的输入，用于生成最终的答案。这里简单就是使用与上面相同的评分函数计算所有候选词与R输入的相关性，得分最高的词语就作为正确答案输出即可：
 $$
-r = argmax_{w &#92;in W} \ S_{R}([x, m_{o1}, m_{o2}], w)
+r = argmax_{w &#92;in W}  S_{R}([x, m_{o1}, m_{o2}], w)
 $$
 
 对于需要产生一个句子输出的情况下，也可以在 R 模块使用 RNN LM.
 
 前面使用到的评分函数的形式为:
 $$
-s(x, y) = \phi_{x}(x)^{T} U^{T} U \phi_{y}(y)
+s(x, y) = phi_{x}(x)^{T} U^{T} U phi_{y}(y)
 $$
 
 <h3>损失函数</h3>

@@ -1,10 +1,10 @@
 ---
-ID: 779
+ID: 83
 post_title: Noise Contrastive Estimation 笔记
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/779
+permalink: https://blog.tvect.cn/?p=83
 published: true
 post_date: 2018-11-01 10:45:38
 ---
@@ -32,79 +32,79 @@ NCE 的基本想法是对观测数据和人工噪声样本做对比区分，从�
 
 用 $ C_t $ 表示和数据点 $u_t$ 对应的类别标签. $ C_t = 1 $ 代表数据来源于数据分布, $ C_t = 0 $ 代表数据来源于噪声分布.
 
-现在建模 $ p(.|C=1) = p_m(.|\theta)$, 且假设存在着一个 $ \theta^* $, 使得 $ p_d(.) = p_m(.;\theta^*)$.
+现在建模 $ p(.|C=1) = p_m(.|theta)$, 且假设存在着一个 $ theta^* $, 使得 $ p_d(.) = p_m(.;theta^*)$.
 
 所以先验分布为:
 
-<div class="katex math multi-line no-emojify">p(C=1) = \frac {T_d} {T_d + T_n} \\
+<div class="katex math multi-line no-emojify">p(C=1) = frac {T_d} {T_d + T_n} \
 
-p(C=1) = \frac {T_d} {T_d + T_n}
+p(C=1) = frac {T_d} {T_d + T_n}
 </div>
 
 似然为:
 
-<div class="katex math multi-line no-emojify">p(u|C=1) = p_m(u; \theta) \\
+<div class="katex math multi-line no-emojify">p(u|C=1) = p_m(u; theta) \
 
 p(u|C=0) = p_n(u)
 </div>
 
 进而, 后验分布为:
 
-<div class="katex math multi-line no-emojify">p(C=1 | u; \theta) = \frac {p_m(u; \theta)} {p_m(u; \theta) + vp_n(u)} \\
+<div class="katex math multi-line no-emojify">p(C=1 | u; theta) = frac {p_m(u; theta)} {p_m(u; theta) + vp_n(u)} \
 
-p(C=0 | u; \theta) = \frac {vp_n(u)} {p_m(u; \theta) + vp_n(u)} \\
+p(C=0 | u; theta) = frac {vp_n(u)} {p_m(u; theta) + vp_n(u)} \
 
-v = \frac {T_n} {T_d} = \frac {P(C=0)} {P(C=1)}
+v = frac {T_n} {T_d} = frac {P(C=0)} {P(C=1)}
 </div>
 
 <h2>The NCE Estimator</h2>
 
-记未归一化的模型为 $p_m^0(.; \alpha)$, 归一化因子为 $ Z(\alpha) = \int p_m^0(u; \alpha) du $, 归一化因子需要做积分, 很多时候很难计算.
+记未归一化的模型为 $p_m^0(.; alpha)$, 归一化因子为 $ Z(alpha) = int p_m^0(u; alpha) du $, 归一化因子需要做积分, 很多时候很难计算.
 
-Noise Contrastive Estimation (NCE) 是未归一化模型的一种估计方法. 它的基本想法是把 $ Z $, 或者等价的 $ c = ln \frac{1}{Z}$ 视为模型参数的一部分 (不再是当做一个 partition function).
+Noise Contrastive Estimation (NCE) 是未归一化模型的一种估计方法. 它的基本想法是把 $ Z $, 或者等价的 $ c = ln frac{1}{Z}$ 视为模型参数的一部分 (不再是当做一个 partition function).
 
-<div class="katex math multi-line no-emojify">ln \, p_m(.; \theta) = ln \, p_m^0(.; \alpha) + c \\
+<div class="katex math multi-line no-emojify">ln , p_m(.; theta) = ln , p_m^0(.; alpha) + c \
 
-\theta = (\alpha, c)
+theta = (alpha, c)
 </div>
 
-下面需要证明的是, 对这个 unnormalized model 做优化得到的最优解 $\theta^* = &#40;\alpha^*, c^*&#41;$, 自然的满足了归一化约束, 最终的 $c$ 自然的成为了归一化因子的近似.
+下面需要证明的是, 对这个 unnormalized model 做优化得到的最优解 $theta^* = &#40;alpha^*, c^*&#41;$, 自然的满足了归一化约束, 最终的 $c$ 自然的成为了归一化因子的近似.
 
-<div class="katex math multi-line no-emojify">\begin{aligned}
-J_T(\theta) &amp;= \frac{1}{T_d} [\sum \limits_{t=1}^{T_d} ln \, p(C=1 | u; \theta)+ \sum \limits_{t=1}^{T_n} ln \, p(C=0 | u; \theta)] \\
-&amp;= \frac{1}{T_d} \sum \limits_{t=1}^{T_d} ln \, p(C=1 | u; \theta) + \frac {v} {T_n}\sum \limits_{t=1}^{T_n} ln \, p(C=0 | u; \theta) \\\\
-\theta_T^{*} &amp;= arg \max J_T(\theta)
-\end{aligned}
+<div class="katex math multi-line no-emojify">begin{aligned}
+J_T(theta) &amp;= frac{1}{T_d} [sum limits_{t=1}^{T_d} ln , p(C=1 | u; theta)+ sum limits_{t=1}^{T_n} ln , p(C=0 | u; theta)] \
+&amp;= frac{1}{T_d} sum limits_{t=1}^{T_d} ln , p(C=1 | u; theta) + frac {v} {T_n}sum limits_{t=1}^{T_n} ln , p(C=0 | u; theta) \\
+theta_T^{*} &amp;= arg max J_T(theta)
+end{aligned}
 </div>
 
-下面有说明的是, <strong>在 $T$ 充分大时, 最优解 $\theta_T^{*}$ 自然满足归一化约束.</strong>
+下面有说明的是, <strong>在 $T$ 充分大时, 最优解 $theta_T^{*}$ 自然满足归一化约束.</strong>
 
 实际上当 <code>$ T $</code> 充分大的时候, 有:
 
-<div class="katex math multi-line no-emojify">J(\theta) = E_{p_d}ln \, p(C=1 | u; \theta) + vE_{p_n} ln \, p(C=0 | u; \theta)
+<div class="katex math multi-line no-emojify">J(theta) = E_{p_d}ln , p(C=1 | u; theta) + vE_{p_n} ln , p(C=0 | u; theta)
 </div>
 
-令 $f=v \frac {p_m}{p_d}$, 将上式视为 $ f $ 的函数有:
+令 $f=v frac {p_m}{p_d}$, 将上式视为 $ f $ 的函数有:
 
-<div class="katex math multi-line no-emojify">\begin{aligned}
-J(f) &amp;= \int p_d(u) ln \, p(C=1 | u; \theta) du + v\int p_n(u) ln \, p(C=0 | u; \theta) du \\
-&amp;= \int p_d(u) ln \, \frac {1}{1+f} du + v \int p_n(u) ln \, \frac {f}{1+f} du \\
-&amp;= -\int p_d(u) ln \, (1+f) du + v \int p_n(u) (ln \, f - ln \, (1+f)) du
-\end{aligned}
+<div class="katex math multi-line no-emojify">begin{aligned}
+J(f) &amp;= int p_d(u) ln , p(C=1 | u; theta) du + vint p_n(u) ln , p(C=0 | u; theta) du \
+&amp;= int p_d(u) ln , frac {1}{1+f} du + v int p_n(u) ln , frac {f}{1+f} du \
+&amp;= -int p_d(u) ln , (1+f) du + v int p_n(u) (ln , f - ln , (1+f)) du
+end{aligned}
 </div>
 
 根据变分法中相关知识, 在 $ J(f) $ 取得极大值时有:
 
-<div class="katex math multi-line no-emojify">\frac {\partial J(f) } {\partial f} = - \frac {p_d(u)} {1 +f} + v \, p_n (\frac {1} {f} - \frac {1} {1+f}) = 0\\
+<div class="katex math multi-line no-emojify">frac {partial J(f) } {partial f} = - frac {p_d(u)} {1 +f} + v , p_n (frac {1} {f} - frac {1} {1+f}) = 0\
 
-f = v \frac {p_n} {p_d}
+f = v frac {p_n} {p_d}
 </div>
 
-从而在 $ T $ 足够大时, 最优解 $ \theta^* $ 满足 $ f(\theta^*) =  v \frac {p_n} {p_d} $,
+从而在 $ T $ 足够大时, 最优解 $ theta^* $ 满足 $ f(theta^*) =  v frac {p_n} {p_d} $,
 
-即 $ p_m(\theta^*) = p_d $.
+即 $ p_m(theta^*) = p_d $.
 
-(注意, 前面已经假设存在着一个 $ \theta^* $, 使得 $ p_d(.) = p_m(.;\theta^*) $)
+(注意, 前面已经假设存在着一个 $ theta^* $, 使得 $ p_d(.) = p_m(.;theta^*) $)
 
 <strong>Tips</strong>: 另外的证明方式可以参见 <a href="https://spaces.ac.cn/archives/5617">博客: “噪声对比估计”杂谈：曲径通幽之妙</a>
 
@@ -112,14 +112,14 @@ f = v \frac {p_n} {p_d}
 
 在语言模型的例子中，NCE 具体化为:
 
-<div class="katex math multi-line no-emojify">p(1|c,w) = \frac {u_{\theta}(w|c)}{u_{\theta}(w|c) + k p_n(w)} \\
-p(0|c,w) = \frac {k p_n(w)}{u_{\theta}(w|c) + k p_n(w)}
+<div class="katex math multi-line no-emojify">p(1|c,w) = frac {u_{theta}(w|c)}{u_{theta}(w|c) + k p_n(w)} \
+p(0|c,w) = frac {k p_n(w)}{u_{theta}(w|c) + k p_n(w)}
 </div>
 
 令 <code>$ k = |V| $</code> 且 <code>$ q(w)$</code> 为均匀分布, 有:
 
-<div class="katex math multi-line no-emojify">p(1|c,w) = \frac {u_{\theta}(w|c)}{u_{\theta}(w|c) + |V| \frac {1}{|V|}} = \frac {u_{\theta}(w|c)} {u_{\theta}(w|c) + 1}\\
-p(0|c,w) = \frac {|V| \frac {1}{|V|}}{u_{\theta}(w|c) + |V| \frac {1}{|V|}} = \frac {1}{u_{\theta}(w|c) + 1}
+<div class="katex math multi-line no-emojify">p(1|c,w) = frac {u_{theta}(w|c)}{u_{theta}(w|c) + |V| frac {1}{|V|}} = frac {u_{theta}(w|c)} {u_{theta}(w|c) + 1}\
+p(0|c,w) = frac {|V| frac {1}{|V|}}{u_{theta}(w|c) + |V| frac {1}{|V|}} = frac {1}{u_{theta}(w|c) + 1}
 </div>
 
 再结合 NCE 的优化函数，对比之下，即可知道 negative sampling 可视为 NCE 的特例.

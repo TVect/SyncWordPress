@@ -1,11 +1,10 @@
 ---
-ID: 228
+ID: 29
 post_title: Attention is all you need 笔记
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: >
-  http://blog.tvect.cc/2018/05/15/attention-is-all-you-need/
+permalink: https://blog.tvect.cn/?p=29
 published: true
 post_date: 2018-05-15 18:46:55
 ---

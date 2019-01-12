@@ -1,10 +1,10 @@
 ---
-ID: 518
+ID: 45
 post_title: 密码保护：关系抽取 notes
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: 'http://blog.tvect.cc/2018/07/10/%e5%85%b3%e7%b3%bb%e6%8a%bd%e5%8f%96-notes/'
+permalink: https://blog.tvect.cn/?p=45
 published: true
 post_date: 2018-07-10 22:30:05
 ---

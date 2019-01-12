@@ -1,10 +1,10 @@
 ---
-ID: 797
+ID: 77
 post_title: 'Dialogue State Tracking &#8211; 文章汇总'
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/797
+permalink: https://blog.tvect.cn/?p=77
 published: true
 post_date: 2018-10-09 21:42:06
 ---

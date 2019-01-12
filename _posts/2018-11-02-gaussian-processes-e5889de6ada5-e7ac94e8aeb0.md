@@ -1,10 +1,10 @@
 ---
-ID: 833
+ID: 85
 post_title: Gaussian Processes 初步 笔记
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/833
+permalink: https://blog.tvect.cn/?p=85
 published: true
 post_date: 2018-11-02 17:32:15
 ---
@@ -30,13 +30,13 @@ post_date: 2018-11-02 17:32:15
 
 观测数据为: $ D=&#123; (x_i, y_i) , i=1,2,...,N &#125; $, 其中 $ f_i = f(x_i) $.
 
-给定测试数据集 $ \bold X_* \in R^{N_* \times  D} $, 现在有预测相应的输出 $\bold f_*$.
+给定测试数据集 $ bold X_* in R^{N_* times  D} $, 现在有预测相应的输出 $bold f_*$.
 
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/11/noiseless-768x183.png" alt="" />
 
 <h2>Noisy GP regression</h2>
 
-考虑观测值带有噪声的情况, $ y = f(x) + \epsilon $, 其中 $f$ 是一个隐含的无噪声的函数, 噪声 $ \epsilon \sim N(0, \sigma^2_y) $, 且假定噪声之间是独立的.
+考虑观测值带有噪声的情况, $ y = f(x) + epsilon $, 其中 $f$ 是一个隐含的无噪声的函数, 噪声 $ epsilon sim N(0, sigma^2_y) $, 且假定噪声之间是独立的.
 
 <img src="http://blog.tvect.cc/wp-content/uploads/2018/11/noise-gp-768x582.png" alt="" />
 
@@ -47,44 +47,44 @@ post_date: 2018-11-02 17:32:15
 
 <h1>Gaussian Processes for Classification</h1>
 
-定义模型为 $ p(y_i|x_i) = \sigma (y_if(x_i)) $, 其中, $ \sigma $ 为 sigmoid 函数. 注意, $f \sim GP(0, k)$, 但是 $y$ 不再服从高斯过程.
+定义模型为 $ p(y_i|x_i) = sigma (y_if(x_i)) $, 其中, $ sigma $ 为 sigmoid 函数. 注意, $f sim GP(0, k)$, 但是 $y$ 不再服从高斯过程.
 
-<div class="katex math multi-line no-emojify">p(y_* | \bold y_N) = \int p(y_*|f_*)p(f_*|\bold y_N) df_*
+<div class="katex math multi-line no-emojify">p(y_* | bold y_N) = int p(y_*|f_*)p(f_*|bold y_N) df_*
 </div>
 
-其中,$ \bold y_N = {y_1, y_2, ..., y_N}$. 上式右边积分中, 第一项已经知道是一个 sigmoid 函数.
+其中,$ bold y_N = {y_1, y_2, ..., y_N}$. 上式右边积分中, 第一项已经知道是一个 sigmoid 函数.
 
 上面整个的积分没有解析解, 所以可以考虑作近似, 比如 sampling methods 或者是 analytical approximation. 因为有对 sigmoid 函数和高斯分布做卷积的近似公式, 所以这里试图把第二项也表示为一个高斯分布, 或者是用一个高斯分布近似.
 
-<div class="katex math multi-line no-emojify"> \begin{aligned}
-p(f_*|\bold y_N) &amp;= \int p(f_*, \bold f_N | \bold y_N) d \bold f_N \\
-&amp;= \frac{1}{p(\bold y_N)} \int p(f_*, \bold f_N) p(\bold y_N | f_*, \bold f_N) d \bold f_N \\
-&amp;= \frac{1}{p(\bold y_N)} \int p(f_* | \bold f_N) p(\bold f_N)p(\bold y_N | f_*, \bold f_N) d \bold f_N \\
-&amp;= \int p(f_* | \bold f_N) p(\bold f_N | \bold y_N) d \bold f_N
-\end{aligned}
+<div class="katex math multi-line no-emojify"> begin{aligned}
+p(f_*|bold y_N) &amp;= int p(f_*, bold f_N | bold y_N) d bold f_N \
+&amp;= frac{1}{p(bold y_N)} int p(f_*, bold f_N) p(bold y_N | f_*, bold f_N) d bold f_N \
+&amp;= frac{1}{p(bold y_N)} int p(f_* | bold f_N) p(bold f_N)p(bold y_N | f_*, bold f_N) d bold f_N \
+&amp;= int p(f_* | bold f_N) p(bold f_N | bold y_N) d bold f_N
+end{aligned}
 </div>
 
-因为 $f \sim GP(0, k)$, 上面积分号中第一项可以利用 GP for regression 中类似的方式得出.
+因为 $f sim GP(0, k)$, 上面积分号中第一项可以利用 GP for regression 中类似的方式得出.
 
-<div class="katex math multi-line no-emojify">p(f_* | \bold f_N) = N(f_* | k^T_*K^{-1} \bold y_N, k_{**}-k^T_*K^{-1}k_*)
+<div class="katex math multi-line no-emojify">p(f_* | bold f_N) = N(f_* | k^T_*K^{-1} bold y_N, k_{**}-k^T_*K^{-1}k_*)
 </div>
 
 上面积分号中第二项可以利用 Laplace Approximation 得到一个近似的高斯分布.
 
-<div class="katex math multi-line no-emojify">p(\bold f_N | \bold y_N) = \frac {p(\bold y_N| \bold f_N) p(\bold f_N)}{Z}
+<div class="katex math multi-line no-emojify">p(bold f_N | bold y_N) = frac {p(bold y_N| bold f_N) p(bold f_N)}{Z}
 </div>
 
-<div class="katex math multi-line no-emojify">p(\bold f_N | \bold y_N) \sim q(\bold f_N | \bold y_N) = N(\bold f_{*N}, (K^{-1} + W)^{-1}) \\
-\bold f_{*N} = K \triangledown log \, p(\bold y_N | \bold f_{*N}) \\
-W = - \triangledown \triangledown log \, p(\bold y_N | \bold f_{N})
+<div class="katex math multi-line no-emojify">p(bold f_N | bold y_N) sim q(bold f_N | bold y_N) = N(bold f_{*N}, (K^{-1} + W)^{-1}) \
+bold f_{*N} = K triangledown log , p(bold y_N | bold f_{*N}) \
+W = - triangledown triangledown log , p(bold y_N | bold f_{N})
 </div>
 
-上面的 $ \bold f_{*N} $ 需要迭代求解.
+上面的 $ bold f_{*N} $ 需要迭代求解.
 
 最终有:
 
-<div class="katex math multi-line no-emojify">E[f_*|\bold y_N] = K^T (\bold y_N - \bold \sigma_N) \\
-var[f_*|\bold y_N] = k_{**} - k_*^T(W_N^{-1} + K)^{-1}k_*
+<div class="katex math multi-line no-emojify">E[f_*|bold y_N] = K^T (bold y_N - bold sigma_N) \
+var[f_*|bold y_N] = k_{**} - k_*^T(W_N^{-1} + K)^{-1}k_*
 </div>
 
 <ul>

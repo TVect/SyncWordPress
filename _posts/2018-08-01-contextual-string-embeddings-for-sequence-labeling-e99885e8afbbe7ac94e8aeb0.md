@@ -1,12 +1,12 @@
 ---
-ID: 620
+ID: 57
 post_title: >
   Contextual String Embeddings for
   Sequence Labeling 阅读笔记
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: 'http://blog.tvect.cc/2018/08/01/contextual-string-embeddings-for-sequence-labeling-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
+permalink: https://blog.tvect.cn/?p=57
 published: true
 post_date: 2018-08-01 08:02:42
 ---

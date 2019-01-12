@@ -1,11 +1,10 @@
 ---
-ID: 341
+ID: 37
 post_title: End-To-End Memory Networks notes
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: >
-  http://blog.tvect.cc/2018/06/12/end-to-end-memory-networks-notes/
+permalink: https://blog.tvect.cn/?p=37
 published: true
 post_date: 2018-06-12 17:24:21
 ---

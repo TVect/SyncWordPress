@@ -1,12 +1,12 @@
 ---
-ID: 790
+ID: 75
 post_title: >
   Language Understanding 文章汇总 –
   Contextual LU
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/790
+permalink: https://blog.tvect.cn/?p=75
 published: true
 post_date: 2018-10-08 22:03:53
 ---

@@ -1,12 +1,12 @@
 ---
-ID: 776
+ID: 73
 post_title: >
   Language Understanding 文章汇总 –
   pipeline
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/776
+permalink: https://blog.tvect.cn/?p=73
 published: true
 post_date: 2018-09-30 07:44:54
 ---

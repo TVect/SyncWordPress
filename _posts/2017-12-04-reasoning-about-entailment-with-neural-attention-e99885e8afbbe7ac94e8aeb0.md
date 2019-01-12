@@ -1,12 +1,12 @@
 ---
-ID: 53
+ID: 15
 post_title: >
   Reasoning About Entailment With Neural
   Attention 阅读笔记
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: 'http://blog.tvect.cc/2017/12/04/reasoning-about-entailment-with-neural-attention-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
+permalink: https://blog.tvect.cn/?p=15
 published: true
 post_date: 2017-12-04 22:23:59
 ---

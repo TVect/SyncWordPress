@@ -1,10 +1,10 @@
 ---
-ID: 876
+ID: 89
 post_title: 'RL Course by D.Silver 笔记 01 &#8211; Introduction'
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/876
+permalink: https://blog.tvect.cn/?p=89
 published: true
 post_date: 2018-11-17 21:54:36
 ---
@@ -85,7 +85,7 @@ e.g. The environment state $S_t^e$ is Markov. The history $H_t$ is Markov</p></l
 Agent <strong>directly</strong> observes environment state: $O_t = S_t^a = S_t^e$
 Formally, this is a <strong>Markov decision process</strong> (MDP)</p></li>
 <li><p>Partially Observable Environments
-Agent <strong>indirectly</strong> observes environment. Now $S_t^a \neq S_t^e$, and agent must construct its own state representation $S_t^a$.
+Agent <strong>indirectly</strong> observes environment. Now $S_t^a neq S_t^e$, and agent must construct its own state representation $S_t^a$.
 Formally this is a <strong>partially observable Markov decision process</strong> (POMDP)</p></li>
 </ul>
 

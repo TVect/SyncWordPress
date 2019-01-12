@@ -1,14 +1,10 @@
 ---
-ID: 674
+ID: 65
 post_title: xgboost 阅读笔记
-author: Chin
-post_excerpt: >
-  本文是很早之前阅读 XGBoost A
-  Scalable Tree Boosting System
-  的笔记。以前是在
-  网易云笔记上面，这里只是简单的搬运过来。
+author: chin340823
+post_excerpt: ""
 layout: post
-permalink: 'http://blog.tvect.cc/2018/08/28/xgboost-%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/'
+permalink: https://blog.tvect.cn/?p=65
 published: true
 post_date: 2018-08-28 15:52:26
 ---

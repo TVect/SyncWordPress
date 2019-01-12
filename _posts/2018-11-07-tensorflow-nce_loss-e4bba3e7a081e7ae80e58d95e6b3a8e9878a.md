@@ -1,10 +1,10 @@
 ---
-ID: 868
+ID: 87
 post_title: tensorflow nce_loss 代码简单注释
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/868
+permalink: https://blog.tvect.cn/?p=87
 published: true
 post_date: 2018-11-07 11:06:22
 ---

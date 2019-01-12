@@ -1,12 +1,12 @@
 ---
-ID: 929
+ID: 97
 post_title: >
   RL Course by D.Silver 笔记 04 –
   Model-Free Prediction
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/929
+permalink: https://blog.tvect.cn/?p=97
 published: true
 post_date: 2018-11-25 18:10:44
 ---
@@ -22,9 +22,9 @@ post_date: 2018-11-25 18:10:44
 
 MC learns from complete episodes: no bootstrapping.
 
-<strong>Goal</strong>: learn $v_\pi$ from episodes of experience under policy $\pi$:
+<strong>Goal</strong>: learn $v_pi$ from episodes of experience under policy $pi$:
 
-$$ S_1, A_1, R_2, ...,  S_k \sim \pi $$
+$$ S_1, A_1, R_2, ...,  S_k sim pi $$
 
 Monte-Carlo policy evaluation uses empirical mean return instead of expected return.
 
@@ -39,15 +39,15 @@ Monte-Carlo policy evaluation uses empirical mean return instead of expected ret
 <li>For each state $S_t$ with return $G_t$</li>
 </ul>
 
-$$ N(S_t) \leftarrow N(S_t) + 1 $$
+$$ N(S_t) leftarrow N(S_t) + 1 $$
 
-$$ V(S_t) \leftarrow V(S_t) + \frac{1}{N(S_t)}(G_t - V(S_t))$$
+$$ V(S_t) leftarrow V(S_t) + frac{1}{N(S_t)}(G_t - V(S_t))$$
 
 <ul>
 <li>In non-stationary problems, it can be useful to track a running mean, i.e. forget old episodes.</li>
 </ul>
 
-$$ V(S_t) \leftarrow V(S_t) + \alpha (G_t - V(S_t))$$
+$$ V(S_t) leftarrow V(S_t) + alpha (G_t - V(S_t))$$
 
 <h1>Temporal-Difference Learning</h1>
 
@@ -56,14 +56,14 @@ TD learns from incomplete episodes, by bootstrapping.
 <strong>Simplest temporal-difference learning algorithm: TD(0)</strong>
 
 <ul>
-<li>Update value $V(S_t)$ toward estimated return $R_{t+1} + \gamma V(S_{t+1})$</li>
+<li>Update value $V(S_t)$ toward estimated return $R_{t+1} + gamma V(S_{t+1})$</li>
 </ul>
 
-$$V(S_t) \leftarrow V(S_t) + \alpha (R_{t+1} + \gamma V(S_{t+1}) − V(S_t))$$
+$$V(S_t) leftarrow V(S_t) + alpha (R_{t+1} + gamma V(S_{t+1}) − V(S_t))$$
 
 <ul>
-<li>$R_{t+1} + \gamma V(S_{t+1}) $ is called the TD target</li>
-<li>$\delta_t = R_{t+1} + \gamma V(S_{t+1}) − V(S_t))$ is called the TD error</li>
+<li>$R_{t+1} + gamma V(S_{t+1}) $ is called the TD target</li>
+<li>$delta_t = R_{t+1} + gamma V(S_{t+1}) − V(S_t))$ is called the TD error</li>
 </ul>
 
 <strong>Advantages and Disadvantages of MC vs. TD</strong>
@@ -75,9 +75,9 @@ TD can learn online after every step, MC must wait until end of episode before r
 TD can learn from incomplete sequences, MC can only learn from complete sequences
 TD works in continuing (non-terminating) environments, MC only works for episodic (terminating) environments</p></li>
 <li><p>bias vs. variance
-Return $G_t = R_{t+1} + \gamma R_{t+2} + ... $ is <strong>unbiased</strong> estimate of $v_\pi(S_t)$
-True TD target $R_{t+1} + \gamma v_\pi(S_{t+1})$ is <strong>unbiased</strong> estimate of $v_\pi(S_t)$
-TD target $R_{t+1} + \gamma V(S_{t+1})$ is <strong>biased</strong> estimate of $v_\pi(S_t)$
+Return $G_t = R_{t+1} + gamma R_{t+2} + ... $ is <strong>unbiased</strong> estimate of $v_pi(S_t)$
+True TD target $R_{t+1} + gamma v_pi(S_{t+1})$ is <strong>unbiased</strong> estimate of $v_pi(S_t)$
+TD target $R_{t+1} + gamma V(S_{t+1})$ is <strong>biased</strong> estimate of $v_pi(S_t)$
 
 <ul>
 <li>MC has high variance, zero bias
@@ -86,7 +86,7 @@ Not very sensitive to initial value
 Very simple to understand and use</p></li>
 <li><p>TD has low variance, some bias
 Usually more efficient than MC
-TD(0) converges to $v_\pi(s)$ (but not always with function approximation)
+TD(0) converges to $v_pi(s)$ (but not always with function approximation)
 More sensitive to initial value</p></li>
 </ul></li>
 <li><p>Markov property
@@ -109,27 +109,27 @@ Usually more effective in non-Markov environments</p></li>
 
 Define the n-step return
 
-$$G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{n−1}R_{t+n} + \gamma^n V(S_{t+n})$$
+$$G_t^{(n)} = R_{t+1} + gamma R_{t+2} + ... + gamma^{n−1}R_{t+n} + gamma^n V(S_{t+n})$$
 
 n-step temporal-difference learning:
 
-$$V(S_t) \leftarrow V(S_t) + \alpha (G_t^{(n)} − V(S_t))$$
+$$V(S_t) leftarrow V(S_t) + alpha (G_t^{(n)} − V(S_t))$$
 
 TD(λ) 尝试将 n-step return 的加权平均值作为 TD-target, 以有效的利用所有时间步的信息. 下面是 TD(λ) 的 Forward View 和 Backward View.
 
 <h2>Forward View of TD(λ)</h2>
 
-The $\lambda$-return $G_t^\lambda$ combines all n-step returns $G_t^{(n)}$:
+The $lambda$-return $G_t^lambda$ combines all n-step returns $G_t^{(n)}$:
 
-$$G_t^\lambda = (1-\lambda) \sum_{n=1}^{\infty} \lambda^{n-1} G_t^{(n)}$$
+$$G_t^lambda = (1-lambda) sum_{n=1}^{infty} lambda^{n-1} G_t^{(n)}$$
 
 Update value function:
 
-$$ V(S_t) \leftarrow V(S_t) + \alpha (G_t^\lambda − V(S_t)) $$
+$$ V(S_t) leftarrow V(S_t) + alpha (G_t^lambda − V(S_t)) $$
 
 <strong>Conclusion</strong>
 
-Forward-view looks into the future to compute G_t^\lambda.
+Forward-view looks into the future to compute G_t^lambda.
 
 Like MC, it can only be computed from complete episodes.
 
@@ -145,43 +145,43 @@ Like MC, it can only be computed from complete episodes.
 <p>Eligibility traces combine both heuristics：
 
 $$
-\begin{aligned}
+begin{aligned}
 E_0(s) &amp;= 0 &#92;
-E_t(s) &amp;= \gamma \lambda E_{t−1}(s) + 1(S_t = s)
-\end{aligned}
+E_t(s) &amp;= gamma lambda E_{t−1}(s) + 1(S_t = s)
+end{aligned}
 $$
 
 <strong>Backward View TD(λ)</strong>
 - Keep an eligibility trace for every state $s$
-- Update value $V(s)$ for every state $s$, in proportion to TD-error $\delta_t$ and eligibility trace $E_t(s)$
+- Update value $V(s)$ for every state $s$, in proportion to TD-error $delta_t$ and eligibility trace $E_t(s)$
 
 $$
-\begin{aligned}
-\delta_t &amp; = R_{t+1} + \gamma V(S_{t+1}) − V(S_t) &#92;
-V(s) &amp; \leftarrow V(s) + \alpha \delta_t E_t(s)
-\end{aligned}
+begin{aligned}
+delta_t &amp; = R_{t+1} + gamma V(S_{t+1}) − V(S_t) &#92;
+V(s) &amp; leftarrow V(s) + alpha delta_t E_t(s)
+end{aligned}
 $$
 
 <strong>TD(λ) and TD(0)</strong>
-When $\lambda = 0$, only current state is updated:
+When $lambda = 0$, only current state is updated:
 
 $$
-\begin{aligned}
+begin{aligned}
 E_t(s) &amp;= 1(S_t = s) &#92;
-V(s) &amp; \leftarrow V(s) + \alpha \delta_t E_t(s)
-\end{aligned}
+V(s) &amp; leftarrow V(s) + alpha delta_t E_t(s)
+end{aligned}
 $$
 
-This is exactly equivalent to TD(0) update: $V(S_t) \leftarrow V(S_t) + \alpha \delta_t$.
+This is exactly equivalent to TD(0) update: $V(S_t) leftarrow V(S_t) + alpha delta_t$.
 
 <strong>TD(λ) and MC</strong>
-When $\lambda = 1$, over the course of an episode, total update for TD(1) is the same as total update for MC.
+When $lambda = 1$, over the course of an episode, total update for TD(1) is the same as total update for MC.
 
 <blockquote>
   Theorem
   The sum of offline updates is identical for forward-view and backward-view TD(λ)
   
-  $$ \sum_{t=1}^T \alpha \delta_t E_t(s) = \sum_{t=1}^T \alpha (G_t^\lambda - V(S_t)) 1(S_t=s)$$
+  $$ sum_{t=1}^T alpha delta_t E_t(s) = sum_{t=1}^T alpha (G_t^lambda - V(S_t)) 1(S_t=s)$$
 </blockquote>
 
 <ul>

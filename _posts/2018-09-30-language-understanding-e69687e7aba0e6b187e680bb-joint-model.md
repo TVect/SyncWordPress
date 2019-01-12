@@ -1,10 +1,10 @@
 ---
-ID: 782
+ID: 71
 post_title: 'Language Understanding 文章汇总 &#8211; joint model'
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/782
+permalink: https://blog.tvect.cn/?p=71
 published: true
 post_date: 2018-09-30 18:02:51
 ---

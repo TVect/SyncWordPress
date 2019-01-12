@@ -1,10 +1,10 @@
 ---
-ID: 320
+ID: 67
 post_title: Variational Inference 小结
-author: Chin
+author: chin340823
 post_excerpt: ""
 layout: post
-permalink: http://blog.tvect.cc/archives/320
+permalink: https://blog.tvect.cn/?p=67
 published: true
 post_date: 2018-09-22 07:51:17
 ---
