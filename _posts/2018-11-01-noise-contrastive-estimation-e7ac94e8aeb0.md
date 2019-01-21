@@ -4,7 +4,7 @@ post_title: Noise Contrastive Estimation 笔记
 author: chin340823
 post_excerpt: ""
 layout: post
-permalink: https://blog.tvect.cn/?p=83
+permalink: https://blog.tvect.cn/archives/83
 published: true
 post_date: 2018-11-01 10:45:38
 ---
