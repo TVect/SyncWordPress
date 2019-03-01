@@ -36,3 +36,11 @@ type of smoothed hinge loss functions.
 <blockquote>
   In this paper, we prove, without any strong assumption, that adding one neuron per output unit can eliminate all suboptimal local minima for multi-class classification, binary classification, and regression with an arbitrary loss function.
 </blockquote>
+
+另外, 文章中也提到了这种消除 bad local minima 方法的局限性和缺点，即这种方法并不能保证我们能找到 <code>$\tilde{L}(\theta, a, W, b)$</code> 的局部极小(对应着 <code>$L(\theta)$</code> 的全局极小.)
+
+<blockquote>
+  eliminating all suboptimal local minima is not sufficient to guarantee the global optimality in polynomial time without taking advantage of additional assumptions or structures of neural networks. (because of the possible discrete nature of the space of $\theta$, and of bad saddle points )
+  
+  an iterative optimization algorithm can converge to a suboptimal local minimum $\theta$ of $L$ (i.e., a local minimum that is not a global minimum), and diverge in terms of $(θ, a, b, W)$ of $\tilde{L}$.
+</blockquote>
