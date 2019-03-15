@@ -45,6 +45,8 @@ Markov Chain 可以用 限制参数数量 的模型来描述数据, 但是其中
 
 <h1>HMM</h1>
 
+参见 <a href="https://www.tvect.cn/archives/224">State Space Models 之 HMM</a>
+
 <h1>LDS</h1>
 
 <h1>参考资料</h1>
