@@ -94,9 +94,9 @@ $$ \xi(z_{n-1}, z_n) = c_n \hat{\alpha}(z_{n-1}) p(x_n|z_n) p(z_n | z_{n-1}) \ha
 
 这里的解码算法对应着 PGM 中的 max-sum algorithm.
 
-记 $w(z_n) = max p(x_1, ..., x_n, z_1, ..., z_n)$
+记 $w(z_n) = max p(x_1, ..., x_n, z_1, ..., z_n)$,
 
-递推求解公式为: $ w(z_{n+1}) = ln \, p(x_{n+1} | z_{n+1}) $$
+递推公式为: $ w(z_{n+1}) = ln \, p(x_{n+1} | z_{n+1}) + max_{z_n} (ln p(x_n | z_n) + w(z_n))$
 
 <h1>番外篇</h1>
 
