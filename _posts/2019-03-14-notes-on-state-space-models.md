@@ -54,5 +54,6 @@ Markov Chain 可以用 限制参数数量 的模型来描述数据, 但是其中
 <h1>参考资料</h1>
 
 <ul>
-<li><a href="">PRML Chapter 13 Sequential Data</a></li>
+<li><p><a href="">PRML Chapter 13 Sequential Data</a></p></li>
+<li><p><a href="http://freemind.pluskid.org/machine-learning/hmm-kalman-particle-filtering/">漫谈 HMM：Kalman/Particle Filtering</a></p></li>
 </ul>
