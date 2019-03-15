@@ -62,6 +62,12 @@ LDS 与 HMM 类似, 不过这里的隐状态是连续变量.
 
 <img src="https://www.tvect.cn/wp-content/uploads/2019/03/610e69c70a87b85d43ed778230aacee3.png" alt="" />
 
+<h1>番外</h1>
+
+<strong>Marginal distribution, Joint Distribution and Conditional distribution in Linear Gaussian Model</strong>
+
+<img src="https://www.tvect.cn/wp-content/uploads/2019/03/73ce4ba6933510bc25dda83df4dc5b6f.png" alt="" />
+
 <h1>参考资料</h1>
 
 <ul>
