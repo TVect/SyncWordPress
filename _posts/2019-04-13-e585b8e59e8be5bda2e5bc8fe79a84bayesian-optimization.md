@@ -49,11 +49,11 @@ where
 
 假定到目前为止, 已经观测到的数据点为 $ (x_1, y_1), (x_2, y_2), ..., (x_n, y_n)$, 考虑要从中选取一个数据点 $x_i$, 其对应的 $y_i$ 是这些已观察中最大的, 把这个 $x_i$ 作为 final solution 返回.
 
-令 $ f_n^* = max_{i&lt;=n} f(x_i)$, 假设现在新增加了一个观测 $(x, f(x))$, 可以把 Expected Improvement 自然的定义为:
+令 $ f_n^* = max_{i \leq n} f(x_i) = max_{i \leq n} y_i $, 假设现在新增加了一个观测 $(x, f(x))$, 可以把 Expected Improvement 自然的定义为:
 
 $ EI_n[x] := E_n[f(x) - f_n^*] $
 
-Here, $E_n[·] = E[· | x1:n; y1:n]$ indicates the expectation taken under the posterior distribution given evaluations of $f$ at $x_1, ..., x_n$ (也即是由前面的高斯过程回归的预测分布给出).
+Here, $E_n[·] = E[· | x_{1:n}; y_{1:n}]$ indicates the expectation taken under the posterior distribution given evaluations of $f$ at $x_1, ..., x_n$ (也即是由前面的高斯过程回归的预测分布给出).
 
 expected improvement algorithm 即选择 $x_{n+1} = max_x EI_n(x)$ 作为下一个待评估点.
 
@@ -62,4 +62,5 @@ expected improvement algorithm 即选择 $x_{n+1} = max_x EI_n(x)$ 作为下一�
 <ul>
 <li><p><a href="https://app.sigopt.com/static/pdf/SigOpt_Bayesian_Optimization_Primer.pdf">Bayesian Optimization Primer</a></p></li>
 <li><p><a href="https://arxiv.org/abs/1807.02811">A Tutorial on Bayesian Optimization</a></p></li>
+<li><p><a href="https://github.com/fmfn/BayesianOptimization">github: BayesianOptimization</a></p></li>
 </ul>
