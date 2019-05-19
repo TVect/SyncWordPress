@@ -165,14 +165,20 @@ L(\lambda) &amp;= \mathbb{E}<em>q [\log p(\beta | X, Z, \alpha)] + \mathbb{E}_q 
 &amp;= \mathbb{E}<em>{q(z)} \eta_g(x, z, \alpha)^T \triangledown</em>{\lambda} A_g(\lambda) - \lambda^T \triangledown_{\lambda} A_g(\lambda) + A_g(\lambda) &#92;&#92;
 \triangledown_{\lambda} L(\lambda) &amp;= \mathbb{E}<em>{q(z)} \eta_g(x, z, \alpha)^T \triangledown</em>{\lambda}^2 A_g(\lambda) - \triangledown_{\lambda} A_g(\lambda) - \lambda^T \triangledown_{\lambda}^2 A_g(\lambda) + \triangledown_{\lambda} A_g(\lambda) &#92;
 &amp;= \mathbb{E}<em>{q(z)} \eta_g(x, z, \alpha)^T \triangledown</em>{\lambda}^2 A_g(\lambda) - \lambda^T \triangledown_{\lambda}^2 A_g(\lambda) &#92;
+&amp;= \triangledown_{\lambda}^2 A_g(\lambda) (\mathbb{E}_{q(z)} \eta_g(x, z, \alpha)^T - \lambda^T) &#92;&#92;
+
+\lambda &amp;= \mathbb{E}_{q(z)} \eta_g(x, z, \alpha)^T &#92;
 \end{aligned}
 $$
 
 <ol start="2">
-<li><strong>优化 $L(\phi_{n,j})$</strong></li>
+<li><strong>优化 $L(\phi_{n,j})$</strong>
+类似于上面的做法可以得到: $ \phi_{n,j} = \mathbb{E}<em>q(\lambda)[\eta_l (x_n, z</em>{n,−j}, \beta)]$</li>
 </ol>
 
-参考<a href="https://arxiv.org/abs/1206.7051v3">Stochastic Variational Inference</a> Page 10-11
+<img src="https://www.tvect.cn/wp-content/uploads/2019/05/b26cd178428e0fe6a75bc0b70a46a713.png" alt="" />
+
+具体可参考<a href="https://arxiv.org/abs/1206.7051v3">Stochastic Variational Inference</a> Page 10-11
 
 <h1>参考资料</h1>
 
