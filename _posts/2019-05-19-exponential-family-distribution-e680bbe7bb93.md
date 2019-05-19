@@ -1,6 +1,6 @@
 ---
 ID: 364
-post_title: exponential family distribution 总结
+post_title: exponential family distribution 小结
 author: chin340823
 post_excerpt: ""
 layout: post
@@ -107,9 +107,20 @@ $\hat{\lambda_1} = \lambda_1 + \sum_i^n t(x_i)$
 
 $\hat{\lambda_2} = \lambda_2 + n$
 
+<strong>一些其他表达形式的共轭</strong>
+
+<ol>
+<li>形式1
+$ p(x | \eta) = h(x) g(\eta) exp(\eta^T u(x)) $
+$ p(\eta | \chi, \nu) = f(\chi, \nu)g(\eta)^{\nu} exp(\nu \eta^T \chi) $</p></li>
+<li><p>形式2
+$ p(x|\eta) = h(x) \exp(\eta^T t(x) - A_l(\eta)) $
+$ p(\eta | \chi, \nu) = f(\chi, \nu) exp(\eta^T \chi - \nu A_l(\eta)) $</p></li>
+</ol>
+
 <h2>Coordinate ascent mean-field variational inference</h2>
 
-参考<a href="https://arxiv.org/abs/1206.7051v3">Stochastic Variational Inference</a> Page 10-11
+<p>参考<a href="https://arxiv.org/abs/1206.7051v3">Stochastic Variational Inference</a> Page 10-11
 
 <h1>参考资料</h1>
 
