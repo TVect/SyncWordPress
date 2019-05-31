@@ -51,7 +51,7 @@ where
 
 令 $ f_n^* = max_{i \leq n} f(x_i) = max_{i \leq n} y_i $, 假设现在新增加了一个观测 $(x, f(x))$, 可以把 Expected Improvement 自然的定义为:
 
-$ EI_n[x] := E_n[f(x) - f_n^*] $
+$ EI_n[x] := E_n[[f(x) - f_n^*]^+] $
 
 Here, $E_n[·] = E[· | x_{1:n}; y_{1:n}]$ indicates the expectation taken under the posterior distribution given evaluations of $f$ at $x_1, ..., x_n$ (也即是由前面的高斯过程回归的预测分布给出).
 
