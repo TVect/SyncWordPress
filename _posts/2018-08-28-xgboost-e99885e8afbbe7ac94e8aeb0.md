@@ -4,13 +4,13 @@ post_title: xgboost 阅读笔记
 author: chin340823
 post_excerpt: ""
 layout: post
-permalink: https://blog.tvect.cn/?p=65
+permalink: https://www.tvect.cn/archives/65
 published: true
 post_date: 2018-08-28 15:52:26
 ---
 [toc]
 
-本文是很早之前阅读 XGBoost A Scalable Tree Boosting System 的笔记。以前是在 <a href="http://note.youdao.com/noteshare?id=e08d817ffc9c77c52be776a413fc641d&amp;sub=C35545F459634CFFA9CE7D227BF9FFD0">网易云笔记</a>上面，这里只是简单的搬运过来。
+本文是很早之前阅读 XGBoost A Scalable Tree Boosting System 的笔记。以前是在  <a href="http://note.youdao.com/noteshare?id=e08d817ffc9c77c52be776a413fc641d&amp;sub=C35545F459634CFFA9CE7D227BF9FFD0">网易云笔记</a>   上面。
 
 <!--more-->
 
@@ -18,45 +18,76 @@ post_date: 2018-08-28 15:52:26
 
 We propose a novel sparsity-aware algorithm for sparse data and weighted quantile sketch for approximate tree learning. More importantly, we provide insights on cache access patterns, data compression and sharding to build a scalable tree boosting system.
 
-<strong>优点&amp;创新点</strong>
+<h2>优点&amp;创新点</h2>
 
 <ul>
-<li>单机版本的xgboost运行速度比现存的实现方案快10+倍，在分布式或者内存有限的情况下，数据量可以很好的扩展到10亿级别的样本。</li>
-<li>提出了新颖的处理稀疏数据的办法。</li>
-<li>提出了一个理论上证明的加权分位数算法(weighted quantile sketch procedure), 可用于近似的分裂点寻找。</li>
-<li>propose an effective cache-aware block structure for out-of-core tree learning</li>
+<li>单机版本的xgboost运行速度比现存的实现方案快10+倍，在分布式或者内存有限的情况下，数据量可以很好的扩展到10亿级别的样本。</p></li>
+<li><p>提出了新颖的处理稀疏数据的办法。</p></li>
+<li><p>提出了一个理论上证明的加权分位数算法(weighted quantile sketch procedure), 可用于近似的分裂点寻找。</p></li>
+<li><p>propose an effective cache-aware block structure for out-of-core tree learning</p></li>
 </ul>
 
 <h1>算法模型相关</h1>
 
 <h2>模型概述</h2>
 
-<ul>
-<li><strong>目标函数</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-01.png" width="600" align=center /></p></li>
-<li><p><strong>树的定义</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-02.png" width="400" align=center /></p></li>
-<li><p><strong>树的复杂度</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-03.png" width="350" align=center /></p></li>
-<li><p><strong>重写目标函数</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-04.png" width="500" align=center /></p></li>
-<li><p><strong>loss reduction after a split</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-05.png" width="600" align=center /></p></li>
-<li><p><strong>其他防止过拟合的方法</strong>
+<p><strong>树的定义</strong>
+
+$f_t(x) = w_{q(x)} \quad w \in \mathbb{R}^T, q: \mathbb{R}^m \rightarrow [1,...,T]$
+
+<strong>树的复杂度</strong>
+
+$ \Omega(f_t) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T  w_i^2$
+
+其中, $T$ 表示这棵树 $f_t$ 的叶子结点的个数, $w_i$ 表示叶子结点上的取值.
+
+<strong>目标函数</strong>
+
+用 $\hat{y_i}^{t-1}$ 表示第 $i$ 个样本在 $t-1$ 轮迭代时的预测值, 目标是要找到 $f_t$ 使得下面的 loss 最小.
+
+$ \mathit{L}^t = \sum_{i=1}^n l(y_i, \hat{y_i}^{t-1} + f_t(x_i)) + \Omega(f_t) $
+
+对上式右侧做二阶 Taylor 展开, 有:
+
+$ \mathit{L}^t \simeq \sum_{i=1}^n [l(y_i, \hat{y_i}^{t-1}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x)] + \Omega(f_t) $
+
+其中, $g_i = \partial_{\hat{y}^{t-1}} l(y_i, \hat{y}^{t-1})$, $h_i = \partial_{\hat{y}^{t-1}}^2 l(y_i, \hat{y}^{t-1})$ 分别为 loss 的一阶导数和二阶导数.
+
+<li>
+
+<strong>重写目标函数</strong>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-04.png" width="500" align=center />
+
+</li>
+<li>
+
+<strong>loss reduction after a split</strong>
+<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-05.png" width="600" align=center />
+
+</li>
+<li>
+
+<strong>其他防止过拟合的方法</strong>
 
 <ul>
 <li>Shrinkage
 scales newly added weights by a factor η after each step of tree boosting.
-reduces the influence of each individual tree and leaves space for future trees to improve the model.</p></li>
-<li><p>Column Subsampling
+reduces the influence of each individual tree and leaves space for future trees to improve the model.
+
+</li>
+<li>
+
+Column Subsampling
 using column sub-sampling prevents over-fitting even more so than the traditional row sub-sampling.
-the usage of column sub-samples also speeds up computations of the parallel algorithm.</p></li>
+the usage of column sub-samples also speeds up computations of the parallel algorithm.
+
+</li>
 </ul></li>
 </ul>
 
 <h2>分裂点寻找</h2>
 
-<p>One of the key problems in tree learning is to find the best split
+One of the key problems in tree learning is to find the best split
 
 <h3>Exact Greedy Algorithm</h3>
 
@@ -80,12 +111,18 @@ Exact Greedy Algorithm很有用，但是无法试用于分布式环境或者是�
 
 <ul>
 <li>Global
-只在树构造的init阶段产生候选分类点，接下来每次分裂都使用同样的candidate</p></li>
-<li><p>Local
-在每次分裂之后，都重新产生candidate</p></li>
+只在树构造的init阶段产生候选分类点，接下来每次分裂都使用同样的candidate
+
+</li>
+<li>
+
+Local
+在每次分裂之后，都重新产生candidate
+
+</li>
 </ul>
 
-<p>global的方法需要的proposal steps更少，但是它需要产生的分裂点更多，因为它没有为每次分裂调整candidate.
+global的方法需要的proposal steps更少，但是它需要产生的分裂点更多，因为它没有为每次分裂调整candidate.
 
 在更深的树的情况下，local的方法可能更为合适。
 
