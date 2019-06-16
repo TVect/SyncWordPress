@@ -45,49 +45,66 @@ $ \Omega(f_t) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T  w_i^2$
 
 用 $\hat{y_i}^{t-1}$ 表示第 $i$ 个样本在 $t-1$ 轮迭代时的预测值, 目标是要找到 $f_t$ 使得下面的 loss 最小.
 
-$ \mathit{L}^t = \sum_{i=1}^n l(y_i, \hat{y_i}^{t-1} + f_t(x_i)) + \Omega(f_t) $
+$$ \mathit{L}^t = \sum_{i=1}^n l(y_i, \hat{y_i}^{t-1} + f_t(x_i)) + \Omega(f_t) $$
 
 对上式右侧做二阶 Taylor 展开, 有:
 
-$ \mathit{L}^t \simeq \sum_{i=1}^n [l(y_i, \hat{y_i}^{t-1}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x)] + \Omega(f_t) $
+$$ \mathit{L}^t \simeq \sum_{i=1}^n [l(y_i, \hat{y_i}^{t-1}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x)] + \Omega(f_t) $$
 
 其中, $g_i = \partial_{\hat{y}^{t-1}} l(y_i, \hat{y}^{t-1})$, $h_i = \partial_{\hat{y}^{t-1}}^2 l(y_i, \hat{y}^{t-1})$ 分别为 loss 的一阶导数和二阶导数.
 
-<li>
-
 <strong>重写目标函数</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-04.png" width="500" align=center />
 
-</li>
-<li>
+假设决策树的结构已知，可以进一步重写目标函数, 进而得到在损失函数最小时每个叶子结点上的预测值, 以及对应的损失函数最小值.
 
-<strong>loss reduction after a split</strong>
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-05.png" width="600" align=center />
+$$
+\begin{aligned}
+\tilde{\mathit{L}}^t &amp;= \sum_{i=1}^n [l(y_i, \hat{y_i}^{t-1}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x)] + \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T  w_i^2 &#92;
+&amp;= \sum_{j=1}^T [(\sum_{i \in I_j} g_i) w_j + \frac{1}{2}(\sum_{i \in I_j}h_i + \lambda) w_j^2] + \gamma T
+\end{aligned}
+$$
 
-</li>
-<li>
+其中, $I_j =  [i | q(x_i) = j]$, 表示落到 第 $j$ 个叶子结点中的所有样本集合.
 
-<strong>其他防止过拟合的方法</strong>
+上式式关于 $w_j$ 的二次函数, 可以方便的求出关于 $w_j$ 的最优解和此时 $L$ 的值, 即:
+
+$$
+\begin{aligned}
+w_j^* &amp;= - \frac{\sum_{i \in I_j} g_i}{\sum_{i \in I_j} h_i + \lambda} &#92;
+\tilde{\mathit{L}}^t &amp;= -\frac{1}{2} \sum_{j=1}^T \frac{(\sum_{i \in I_j} g_i)^2}{\sum_{i \in I_j} h_i + \lambda} + \gamma T
+\end{aligned}
+$$
+
+<strong>每一棵树的构造方式</strong>
+
+基于上面给出的损失函数最小值, 可以计算分裂前后的损失函数的差值(loss reduction after a split).
+
+具体来说, 假设某个结点有 $I$ 个样本, 现考虑将其分裂为左右另个结点, 分别包括 $I_L$ 和 $I_R$ 个样本. 分裂前后的 loss reduction 计算如下:
+
+$$
+\begin{aligned}
+\mathit{L}<em>{split} &amp;= \mathit{L}</em>{before} - \mathit{L}<em>{after} &#92;
+&amp;= \frac{1}{2} [\frac{(\sum</em>{i \in I_L} g_i)^2}{\sum_{i \in I_L} h_i + \lambda} + \frac{(\sum_{i \in I_R} g_i)^2}{\sum_{i \in I_R} h_i + \lambda} - \frac{(\sum_{i \in I} g_i)^2}{\sum_{i \in I} h_i + \lambda}] - \gamma
+\end{aligned}
+$$
+
+XGBoost 会采用最大化这个差值作为准则来进行决策树的构建，通过遍历所有特征的所有取值，寻找使得 $L_{split}$ 最大时对应的分裂方式。
+此外，由于损失函数前后存在差值一定为正的限制，此时 $\gamma$ 也起到了一定的预剪枝效果。
+
+<h2>一些防止过拟合的方法</h2>
 
 <ul>
-<li>Shrinkage
+<li><strong>Shrinkage</strong>
 scales newly added weights by a factor η after each step of tree boosting.
-reduces the influence of each individual tree and leaves space for future trees to improve the model.
-
-</li>
-<li>
-
-Column Subsampling
+reduces the influence of each individual tree and leaves space for future trees to improve the model.</p></li>
+<li><p><strong>Column Subsampling</strong>
 using column sub-sampling prevents over-fitting even more so than the traditional row sub-sampling.
-the usage of column sub-samples also speeds up computations of the parallel algorithm.
-
-</li>
-</ul></li>
+the usage of column sub-samples also speeds up computations of the parallel algorithm.</p></li>
 </ul>
 
 <h2>分裂点寻找</h2>
 
-One of the key problems in tree learning is to find the best split
+<p>One of the key problems in tree learning is to find the best split
 
 <h3>Exact Greedy Algorithm</h3>
 
@@ -111,18 +128,12 @@ Exact Greedy Algorithm很有用，但是无法试用于分布式环境或者是�
 
 <ul>
 <li>Global
-只在树构造的init阶段产生候选分类点，接下来每次分裂都使用同样的candidate
-
-</li>
-<li>
-
-Local
-在每次分裂之后，都重新产生candidate
-
-</li>
+只在树构造的init阶段产生候选分类点，接下来每次分裂都使用同样的candidate</p></li>
+<li>Local
+在每次分裂之后，都重新产生candidate</p></li>
 </ul>
 
-global的方法需要的proposal steps更少，但是它需要产生的分裂点更多，因为它没有为每次分裂调整candidate.
+<p>global的方法需要的proposal steps更少，但是它需要产生的分裂点更多，因为它没有为每次分裂调整candidate.
 
 在更深的树的情况下，local的方法可能更为合适。
 
@@ -159,6 +170,17 @@ global的方法需要的proposal steps更少，但是它需要产生的分裂点
 </ul>
 
 没有仔细看了。。。。。。
+
+<h1>gbdt vs. xgboost</h1>
+
+<ol>
+<li><p>GBDT是机器学习算法，XGBoost是该算法的工程实现。</p></li>
+<li><p>在使用CART作为基分类器时，XGBoost显式地加入了正则项来控制模型的复杂度，有利于防止过拟合，从而提高模型的泛化能力。</p></li>
+<li><p>GBDT在模型训练时只使用了代价函数的一阶导数信息，XGBoost对代价函数进行二阶泰勒展开，可以同时使用一阶和二阶导数。</p></li>
+<li><p>传统的GBDT采用CART作为基分类器，XGBoost支持多种类型的基分类器，比如线性分类器。</p></li>
+<li><p>传统的GBDT在每轮迭代时使用全部的数据，XGBoost则采用了与随机森林相似的策略，支持对数据进行采样。</p></li>
+<li><p>传统的GBDT没有设计对缺失值进行处理，XGBoost能够自动学习出缺失值的处理策略。</p></li>
+</ol>
 
 <h1>参考文献</h1>
 
