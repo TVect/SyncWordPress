@@ -112,7 +112,7 @@ the usage of column sub-samples also speeds up computations of the parallel algo
 
 为了有效的计算，一般需要对每个特征按特征取值大小进行排序，排序后再按顺序遍历累加。
 
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-06.png" width="500" align=center />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/06/f728366b84f0b543a8a7159681cf6f1b.png" alt="" />
 
 案例：scikit-learn, R’s gbm, 单机版本的XGBoost
 
@@ -120,16 +120,16 @@ the usage of column sub-samples also speeds up computations of the parallel algo
 
 Exact Greedy Algorithm很有用，但是无法试用于分布式环境或者是数据量太大无法放到内存的情况。
 
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-07.png" width="500" align=center />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/06/23adaa1169e3d5957b36ccde12222d71.png" alt="" />
 
 上面算法中，先根据特征分布的分位数信息得到候选的分裂点（具体可以看下面的Weighted Quantile Sketch），再根据聚合统计量选出最优的分裂点。
 
 具体的，有两个版本的算法：
 
 <ul>
-<li>Global
+<li><strong>Global</strong>
 只在树构造的init阶段产生候选分类点，接下来每次分裂都使用同样的candidate</p></li>
-<li>Local
+<li><p><strong>Local</strong>
 在每次分裂之后，都重新产生candidate</p></li>
 </ul>
 
@@ -143,13 +143,13 @@ Exact Greedy Algorithm很有用，但是无法试用于分布式环境或者是�
 
 特征的分位数信息经常可以用来产生该特征候选分裂点。
 
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-08.png" width="500" align=center />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/06/4f17b1708af9fcf974a4ab481e8bb099.png" alt="" />
 
 上面的 epsilon 是一个控制精度的参数，基本上可视为有1/epsilon 个候选点.
 
 另外，上面的每个点都用了二阶导数进行加权。因为损失函数可以视为加权的平方损失，label为g/h，权重为h.
 
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-09.png" width="400" align=center />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/06/21d6f9d2694131d46ead2e3a31150263.png" alt="" />
 
 然而，对于大的数据集没有trivial的方法找到符合上述准则的split point。
 
@@ -159,7 +159,7 @@ Exact Greedy Algorithm很有用，但是无法试用于分布式环境或者是�
 
 实际问题中，输入数据经常是稀疏的，为了处理这个问题，xgboost给每个树节点加上了一个默认分裂方向。
 
-<img src="http://blog.tvect.cc/wp-content/uploads/2018/08/xgboost-10.png" width="500" align=center />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/06/2718048fc551dd0682de1ecd9a7b9ca5.png" alt="" />
 
 <h1>系统设计相关</h1>
 
