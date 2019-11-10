@@ -41,7 +41,7 @@ few-shot 的训练集中包含了很多的类别，每个类别中有多个样�
 
 <strong>Relation Net</strong>: <a href="https://arxiv.org/abs/1711.06025">Learning to Compare: Relation Network for Few-Shot Learning</a>
 
-<img src="https://www.tvect.cn/wp-content/uploads/2019/11/metric_methods.jpg" alt="" />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/11/metric_methods-1024x497.jpg" alt="" />
 
 <h1>Few-shot learning 在 NLP 中的几个案例</h1>
 
@@ -49,11 +49,11 @@ few-shot 的训练集中包含了很多的类别，每个类别中有多个样�
 
 <a href="https://arxiv.org/abs/1902.10482">Induction Networks for Few-Shot Text Classification</a>
 
-<img src="https://www.tvect.cn/wp-content/uploads/2019/11/intent-classification.jpg" alt="" />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/11/intent-classification-1024x460.jpg" alt="" />
 
 <h3>网络结构</h3>
 
-<img src="https://www.tvect.cn/wp-content/uploads/2019/11/intent-classification-components.png" alt="" />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/11/intent-classification-components-1024x553.png" alt="" />
 
 <h3>总体训练流程</h3>
 
@@ -61,7 +61,7 @@ few-shot 的训练集中包含了很多的类别，每个类别中有多个样�
 
 <h3>实验结果</h3>
 
-<img src="https://www.tvect.cn/wp-content/uploads/2019/11/intent-classification-results.png" alt="" />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/11/intent-classification-results-1024x239.png" alt="" />
 
 <h2>Relation Extraction</h2>
 
