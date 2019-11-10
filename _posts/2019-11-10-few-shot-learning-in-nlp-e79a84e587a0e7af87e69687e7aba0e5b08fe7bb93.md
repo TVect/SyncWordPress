@@ -71,7 +71,7 @@ few-shot 的训练集中包含了很多的类别，每个类别中有多个样�
 
 <h3>网络结构</h3>
 
-<img src="https://www.tvect.cn/wp-content/uploads/2019/11/relation-extraction-components-882x1024.png" alt="" />
+<img src="https://www.tvect.cn/wp-content/uploads/2019/11/relation-extraction-components-1-1024x478.png" alt="" />
 
 <h3>实验结果</h3>
 
